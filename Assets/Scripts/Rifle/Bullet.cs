@@ -6,13 +6,21 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _timeLive;
-    private float _time;
+    [SerializeField] private Rigidbody _rigibody;
+    
+    private int _damage = 1;
+    private Enemy _enemy;
+
     private void Update()
     {
-        transform.Translate(Vector3.forward * _speed * Time.deltaTime);
-        _time += Time.deltaTime;
-        if (_time >= _timeLive)
+        Destroy(gameObject, 5f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<Enemy>(out _enemy))
         {
+            _enemy.TakeDamage(_damage);
             Destroy(gameObject);
         }
     }

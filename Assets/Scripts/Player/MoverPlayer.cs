@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Moveplayer : MonoBehaviour
+public class MoverPlayer : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private VariableJoystick _variableJoystick;
     [SerializeField] private Rigidbody _rigiBody;
     [SerializeField] private Animator _animator;
 
+    private List<Enemy> _enemies;
+
     public const string Speed = "Speed";
+
 
     public void FixedUpdate()
     {

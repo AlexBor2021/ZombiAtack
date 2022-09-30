@@ -5,29 +5,40 @@ using UnityEngine;
 public class Rifle : MonoBehaviour
 {
     [SerializeField] private Shell _shell;
-    [SerializeField] private Bullet _bullet;
+    [SerializeField] private GameObject _bullet;
     [SerializeField] private Transform _spawnBullet;
     [SerializeField] private Transform _spawShell;
     [SerializeField] private float _dalayForShoting;
-    [SerializeField] private Transform _pool;
     
     private Shell _shellPool;
-    private Bullet _bulletPool;
-
-
-    private void Update()
+    private GameObject _bulletPool;
+    private float _forseForShell = 250f;
+    private float _forseForBullet = 2000f;
+    private bool _work = false;
+    
+    private Coroutine _shooting;
+    
+    private IEnumerator Shooting(Enemy enemy)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        while (enemy != null && Vector3.Distance(enemy.transform.position, transform.position) < 10f)
         {
-            StartCoroutine(Shooting());
+            _shellPool = Instantiate(_shell, _spawShell);
+            _shellPool.transform.parent = null;
+            _shellPool.GetComponent<Rigidbody>().AddForce(_spawShell.up * _forseForShell);
+            _bulletPool = Instantiate(_bullet, _spawnBullet.position, Quaternion.identity);
+            _bulletPool.GetComponent<Rigidbody>().AddForce(_spawnBullet.forward * _forseForBullet);
+            yield return new WaitForSeconds(_dalayForShoting);
         }
+        StopCoroutine(_shooting);
+        _work = false;
     }
 
-    private IEnumerator Shooting()
+    public void ShootInEnemy(Enemy enemy)
     {
-        _shellPool = Instantiate(_shell, _spawShell);
-        _shellPool.transform.SetParent(_pool);
-        _bulletPool = Instantiate(_bullet, _spawnBullet.position, _spawnBullet.rotation);
-        yield return new WaitForSeconds(_dalayForShoting);
+        if (_work == false)
+        {
+            _shooting = StartCoroutine(Shooting(enemy));
+            _work = true;
+        }
     }
 }
