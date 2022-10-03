@@ -5,17 +5,26 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
-    private int _health = 40;
+    [SerializeField] private EnemyAnimation _enemyAnimation;
+    [SerializeField] private EnemyMove _enemyMove;
+
+    private int _health = 10;
+
+    public int Health => _health;
 
     public event UnityAction<Enemy> DiedEnemy;
 
     public void TakeDamage(int damage)
     {
-        _health -= damage;
         if (_health <= 0)
         {
             DiedEnemy?.Invoke(this);
-            Destroy(gameObject);
+            Destroy(gameObject, 2f);
+        }
+        else
+        {
+            _health -= damage;
+            _enemyAnimation.SetHit();
         }
     }
 }

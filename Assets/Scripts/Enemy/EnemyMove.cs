@@ -6,11 +6,12 @@ public class EnemyMove : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _targets;
     [SerializeField] private Animator _animator;
+    [SerializeField] private EnemyAtack _enemyAtack;
     [SerializeField] private float _speed;
     
     private int _countTraget = 0;
-
-    public const string Atack = "Atack";
+    private const string _atack = "Atack";
+    private const string _die = "Die";
 
     private void Update()
     {
@@ -20,7 +21,7 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
-            _animator.SetBool(Atack, true);
+            _animator.SetBool(_atack, true);
         }
         transform.rotation = Quaternion.LookRotation(-_targets[_countTraget].transform.position);
     }
@@ -28,5 +29,11 @@ public class EnemyMove : MonoBehaviour
     public void GetTarget(GameObject _target)
     {
         _targets.Add(_target);
+    }
+
+    public void Die()
+    {
+        _speed = 0;
+        _animator.SetTrigger(_die);
     }
 }

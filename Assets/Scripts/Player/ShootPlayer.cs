@@ -13,11 +13,15 @@ public class ShootPlayer : MonoBehaviour
     {
         if (_enemyTarget != null)
         {
-            if (Vector3.Distance(_enemyTarget.transform.position, transform.position) < 10f)
+            if (Vector3.Distance(_enemyTarget.transform.position, transform.position) < _rifle.RangeBullet)
             {
                 transform.LookAt(_enemyTarget.transform.position);
                 _rifle.ShootInEnemy(_enemyTarget);
             }
+        }
+        else
+        {
+            _rifle.StopShoot();
         }
     }
 

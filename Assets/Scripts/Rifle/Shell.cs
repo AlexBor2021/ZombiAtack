@@ -6,13 +6,8 @@ public class Shell : MonoBehaviour
 {
     [SerializeField] private float _timeLive;
     
-    private float _time;
     private void Update()
     {
-        _time += Time.deltaTime;
-        if (_time >= _timeLive)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject, _timeLive);
     }
 }

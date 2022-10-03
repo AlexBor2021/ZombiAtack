@@ -10,6 +10,7 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField] private List<Enemy> _enemies;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private ShootPlayer _shootPlayer;
+    [SerializeField] private Rifle _rifle;
 
     private Wave _currentWave;
     private float _timeAfterLastSpawn;
@@ -33,13 +34,13 @@ public class SpawnEnemy : MonoBehaviour
             _spawnedEnemy++;
             _timeAfterLastSpawn = 0;
         }
+    }
 
-        if (_currentTargetForPlayer != null)
+    private void SetTargetForEnemy(Enemy enemy)
+    {
+        foreach (var target in _targets)
         {
-            if (Vector3.Distance(_currentTargetForPlayer.transform.position, transform.position) < 10f )
-            {
-                SetTargetForPlayer();
-            }
+            enemy.GetComponent<EnemyMove>().GetTarget(target);
         }
     }
 
@@ -47,31 +48,33 @@ public class SpawnEnemy : MonoBehaviour
     {
         var enemy = Instantiate(_currentWave.Enemy, _spawnPoint.transform.position, _spawnPoint.transform.rotation, transform).GetComponent<Enemy>();
         enemy.DiedEnemy += OnDieEnemy;
-        foreach (var target in _targets)
-        {
-            enemy.GetComponent<EnemyMove>().GetTarget(target);
-        }
         _enemies.Add(enemy);
+        _currentTargetForPlayer = enemy;
+        SetTargetForEnemy(enemy);
         SetTargetForPlayer();
     }
 
     private void OnDieEnemy(Enemy enemy)
     {
         enemy.DiedEnemy -= OnDieEnemy;
+        enemy.GetComponent<EnemyMove>().Die();
+        enemy.GetComponent<EnemyAnimation>().SetDie();
         _enemies.Remove(enemy);
         SetTargetForPlayer();
     }
 
     private void SetTargetForPlayer()
     {
+        _shootPlayer.SetEnemyTarget(_currentTargetForPlayer);
+
         foreach (var enemy in _enemies)
         {
-            if (Vector3.Distance(enemy.transform.position, transform.position) < 10f)
+            if (Vector3.Distance(enemy.transform.position, _shootPlayer.transform.position) < _rifle.RangeBullet)
             {
                 _currentTargetForPlayer = enemy;
+                _shootPlayer.SetEnemyTarget(_currentTargetForPlayer);
             }
         }
-        _shootPlayer.SetEnemyTarget(_currentTargetForPlayer);
     }
 
     [System.Serializable]
