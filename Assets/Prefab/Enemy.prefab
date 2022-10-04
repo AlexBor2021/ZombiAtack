@@ -370,6 +370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targets: []
   _animator: {fileID: 3474259878080207030}
+  _enemyAtack: {fileID: 1919702021237967932}
   _speed: 3
 --- !u!114 &1020949903
 MonoBehaviour:

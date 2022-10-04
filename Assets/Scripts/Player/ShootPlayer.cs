@@ -18,6 +18,10 @@ public class ShootPlayer : MonoBehaviour
                 transform.LookAt(_enemyTarget.transform.position);
                 _rifle.ShootInEnemy(_enemyTarget);
             }
+            else
+            {
+                _rifle.StopShoot();
+            }
         }
         else
         {

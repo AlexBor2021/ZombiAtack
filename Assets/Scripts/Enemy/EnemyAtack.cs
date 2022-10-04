@@ -15,27 +15,22 @@ public class EnemyAtack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Door>(out _door))
+        if (other.TryGetComponent<Door>(out Door door))
         {
+            _door = door;
             StartCoroutine(GiveDamageDoor());
         }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent<Door>(out _door))
-        {
-            _door = null;
-        }
-    }
+    
 
     private IEnumerator GiveDamageDoor()
     {
-        while (_door != null)
+        while (_door.Health > 0)
         {
             _door.TakeDamage(_damage);
             yield return new WaitForSeconds(_dalay);
         }
         StopCoroutine(GiveDamageDoor());
+        _enemyMove.SetNextTarget();
     }
 }

@@ -45,8 +45,9 @@ public class Rifle : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(_spawnBullet.position, _spawnBullet.forward, out hit, _rangeBullet))
         {
-            if (hit.transform.TryGetComponent<Enemy>(out Enemy enemy))
+            if (hit.transform.TryGetComponent<Enemy>(out Enemy enemy) && enemy.Health > -_damage)
             {
+                Debug.Log(enemy.Health);
                 enemy.TakeDamage(_damage);
             }
         }
@@ -67,6 +68,7 @@ public class Rifle : MonoBehaviour
         {
             StopCoroutine(_shooting);
             _effectShoot.Stop();
+            _work = false;
         }
     }
 }
