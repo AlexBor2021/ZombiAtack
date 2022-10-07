@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ShootPlayer : MonoBehaviour
+public class ShootingPlayer : MonoBehaviour
 {
     [SerializeField] private Rifle _rifle;
     
-    private Enemy _enemyTarget;
+    public Enemy _enemyTarget;
 
     private void Update()
     {
@@ -27,10 +27,5 @@ public class ShootPlayer : MonoBehaviour
         {
             _rifle.StopShoot();
         }
-    }
-
-    public void SetEnemyTarget(Enemy enemyTarget)
-    {
-        _enemyTarget = enemyTarget;
     }
 }

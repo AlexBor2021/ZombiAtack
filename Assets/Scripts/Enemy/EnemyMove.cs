@@ -4,41 +4,30 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _targets;
-    [SerializeField] private Animator _animator;
+    [SerializeField] private EnemyAnimation _enemyAnimation;
     [SerializeField] private float _speed;
-    
-    private int _numberTraget = 0;
-    private const string _atack = "Atack";
-    private const string _die = "Die";
+
+    private TargetsForEnemy _targetsForEnemy;
+    private GameObject _target;
+
+    private void OnEnable()
+    {
+        _targetsForEnemy = transform.parent.GetComponent<TargetsForEnemy>();
+        _target = _targetsForEnemy.CurrentTarget;
+    }
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, _targets[_numberTraget].transform.position) > 0.5f)
+        if (_target == null)
+            return;
+        if (Vector3.Distance(transform.position, _target.transform.position) > 0.5f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _targets[_numberTraget].transform.position, _speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _speed * Time.deltaTime);
         }
         else
         {
-            _animator.SetBool(_atack, true);
+            _enemyAnimation.SetAtack(true);
         }
-        transform.rotation = Quaternion.LookRotation(-_targets[_numberTraget].transform.position);
-    }
-
-    public void GetTarget(GameObject _target)
-    {
-        _targets.Add(_target);
-    }
-
-    public void Die()
-    {
-        _speed = 0;
-        _animator.SetTrigger(_die);
-    }
-
-    public void SetNextTarget()
-    {
-        _numberTraget++;
-        _animator.SetBool(_atack, false);
+        transform.rotation = Quaternion.LookRotation(-_target.transform.position);
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8481518040628665441}
   - component: {fileID: 8481518040619152261}
+  - component: {fileID: -3189035118082594192}
   m_Layer: 0
   m_Name: rifle
   m_TagString: Untagged
@@ -54,6 +55,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-3189035118082594192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8481518040628494401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1b580841bb6c843b2832e23c0dd24b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shell: {fileID: 6197942471715588039, guid: 29277f7a2cf31a949bd1f438823f8f81, type: 3}
+  _bullet: {fileID: 2740409403971857290, guid: ab3dda5ac2dbbc8488eabab662e3dfd0, type: 3}
+  _spawnBullet: {fileID: 0}
+  _spawShell: {fileID: 0}
+  _dalayForShoting: 0
 --- !u!1 &8481518040628494405
 GameObject:
   m_ObjectHideFlags: 0

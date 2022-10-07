@@ -368,9 +368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79852f7fa79199c459bc9b183dc45e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targets: []
-  _animator: {fileID: 3474259878080207030}
-  _enemyAtack: {fileID: 1919702021237967932}
+  _enemyAnimation: {fileID: 1969719834}
+  _targetsForEnemy: {fileID: 0}
   _speed: 3
 --- !u!114 &1020949903
 MonoBehaviour:
@@ -386,6 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyAnimation: {fileID: 1969719834}
   _enemyMove: {fileID: 5662731693726809833}
+  _barDie: {fileID: 0}
 --- !u!114 &1969719834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,7 +398,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51e63dd259e27c40be30894a8d3277d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 1969719835}
+  _animatorSkelet: {fileID: 3474259878080207030}
+  _animatorStickmen: {fileID: 1969719835}
 --- !u!114 &1919702021237967932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,6 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyMove: {fileID: 5662731693726809833}
+  _enemyAnimation: {fileID: 1969719834}
 --- !u!1 &3474259878087600908
 GameObject:
   m_ObjectHideFlags: 0

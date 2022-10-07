@@ -5,13 +5,12 @@ using UnityEngine;
 public class EnemyAtack : MonoBehaviour
 {
     [SerializeField] private EnemyMove _enemyMove;
+    [SerializeField] private EnemyAnimation _enemyAnimation;
 
     private int _damage = 4;
     private float _dalay = 3f;
     private Door _door;
-
     private const string DamageOnDoor = "GiveDamageDoor";
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +20,6 @@ public class EnemyAtack : MonoBehaviour
             StartCoroutine(GiveDamageDoor());
         }
     }
-    
 
     private IEnumerator GiveDamageDoor()
     {
@@ -31,6 +29,6 @@ public class EnemyAtack : MonoBehaviour
             yield return new WaitForSeconds(_dalay);
         }
         StopCoroutine(GiveDamageDoor());
-        _enemyMove.SetNextTarget();
+        _enemyAnimation.SetAtack(false);
     }
 }
