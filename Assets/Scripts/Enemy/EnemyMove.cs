@@ -5,10 +5,12 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     [SerializeField] private EnemyAnimation _enemyAnimation;
+    [SerializeField] private Enemy _enemy;
     [SerializeField] private float _speed;
 
     private TargetsForEnemy _targetsForEnemy;
     private GameObject _target;
+    public bool StopMoveTriger = false;
 
     private void OnEnable()
     {
@@ -18,16 +20,22 @@ public class EnemyMove : MonoBehaviour
 
     private void Update()
     {
+        if(_enemy.Health <= 0)
+            return;
         if (_target == null)
             return;
-        if (Vector3.Distance(transform.position, _target.transform.position) > 0.5f)
+        
+        _target = _targetsForEnemy.CurrentTarget;
+
+        if (StopMoveTriger == false)
         {
+            _enemyAnimation.SetAtackAndMove(false);
             transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _speed * Time.deltaTime);
         }
         else
         {
-            _enemyAnimation.SetAtack(true);
+            _enemyAnimation.SetAtackAndMove(true);
         }
-        transform.rotation = Quaternion.LookRotation(-_target.transform.position);
+        transform.LookAt(_target.transform);
     }
 }

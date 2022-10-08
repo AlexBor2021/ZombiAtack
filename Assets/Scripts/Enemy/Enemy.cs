@@ -7,9 +7,12 @@ using UnityEngine.Events;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyAnimation _enemyAnimation;
-    [SerializeField] private EnemyMove _enemyMove;
+    [SerializeField] private BoxCollider _triger;
 
     private int _health = 10;
+    
+    public int _revardCoin = 2;
+    public int _revardAlmaz = 2;
 
     public int Health => _health;
 
@@ -19,9 +22,7 @@ public class Enemy : MonoBehaviour
     {
         if (_health <= 0)
         {
-            _enemyAnimation.SetDie();
-            DiedEnemy?.Invoke(this);
-            Destroy(gameObject, 2f);
+            Die();
         }
         else
         {
@@ -29,4 +30,11 @@ public class Enemy : MonoBehaviour
             _enemyAnimation.SetHit();
         }
     }
+        private void Die()
+        {
+            _triger.enabled = false;
+            _enemyAnimation.SetDie();
+            DiedEnemy?.Invoke(this);
+            Destroy(gameObject, 2f);
+        }
 }

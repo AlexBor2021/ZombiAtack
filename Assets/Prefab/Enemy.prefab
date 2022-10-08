@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 3474259878087374698}
   - component: {fileID: 3474259878080207030}
   - component: {fileID: 8121709903865694417}
-  - component: {fileID: 7998366770995705378}
+  - component: {fileID: 2092079521815012898}
   - component: {fileID: 3743723216160259098}
   - component: {fileID: 5662731693726809833}
   - component: {fileID: 1020949903}
@@ -329,7 +329,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!65 &7998366770995705378
+--- !u!65 &2092079521815012898
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -340,8 +340,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.8233888, z: 1}
-  m_Center: {x: 0, y: 0.9527071, z: 0}
+  m_Size: {x: 1, y: 1.307867, z: 0.35106555}
+  m_Center: {x: 0, y: 1.0326328, z: 0.4992329}
 --- !u!136 &3743723216160259098
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -369,8 +369,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyAnimation: {fileID: 1969719834}
-  _targetsForEnemy: {fileID: 0}
+  _enemy: {fileID: 1020949903}
   _speed: 3
+  StopMoveTriger: 0
 --- !u!114 &1020949903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,8 +385,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyAnimation: {fileID: 1969719834}
-  _enemyMove: {fileID: 5662731693726809833}
-  _barDie: {fileID: 0}
+  _triger: {fileID: 2092079521815012898}
+  _revardCoin: 2
+  _revardAlmaz: 2
 --- !u!114 &1969719834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +415,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyMove: {fileID: 5662731693726809833}
-  _enemyAnimation: {fileID: 1969719834}
 --- !u!1 &3474259878087600908
 GameObject:
   m_ObjectHideFlags: 0

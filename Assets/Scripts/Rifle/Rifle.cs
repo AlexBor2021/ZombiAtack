@@ -13,7 +13,6 @@ public class Rifle : MonoBehaviour
     
     private float _rangeBullet = 10f;
     private bool _playerShoot = false;
-    private int _damage = 3;
     private Coroutine _shooting;
 
     private void OnEnable()

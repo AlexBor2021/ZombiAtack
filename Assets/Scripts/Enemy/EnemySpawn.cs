@@ -8,6 +8,7 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private List<Wave> _waves;
     [SerializeField] private TargetForPlayer _targetForPlayer;
     [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private BarDie _barDie;
     
     private Wave _currentWave;
     private float _timeAfterLastSpawn;
@@ -36,6 +37,7 @@ public class EnemySpawn : MonoBehaviour
     {
         var enemy = Instantiate(_currentWave.Enemy, _spawnPoint.transform.position, _spawnPoint.transform.rotation, transform).GetComponent<Enemy>();
         _targetForPlayer.AddEnemy(enemy);
+        enemy.DiedEnemy += _barDie.SetCountDie;
     }
     
 

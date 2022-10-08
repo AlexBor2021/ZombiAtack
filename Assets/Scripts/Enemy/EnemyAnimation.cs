@@ -22,7 +22,7 @@ public class EnemyAnimation : MonoBehaviour
         _animatorStickmen.SetTrigger(_die);
     }
 
-    public void SetAtack(bool conditionAtack)
+    public void SetAtackAndMove(bool conditionAtack)
     {
         _animatorSkelet.SetBool(_atack, conditionAtack);
     }

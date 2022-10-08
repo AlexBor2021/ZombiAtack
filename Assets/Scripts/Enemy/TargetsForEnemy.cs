@@ -22,6 +22,7 @@ public class TargetsForEnemy : MonoBehaviour
 
     public void DestroyTarget()
     {
-        
+        _currentTargetNumber = 1;
+        CurrentTarget = _targets[_currentTargetNumber];
     }
 }

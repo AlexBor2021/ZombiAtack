@@ -6,7 +6,8 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _effect;
 
-    private float _speed = 10;
+    private float _speed = 15;
+    private int _damage = 1;
 
     private void OnEnable()
     {
@@ -22,6 +23,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.TryGetComponent<Enemy>(out Enemy enemy))
+        {
+            enemy.TakeDamage(_damage);
+            Destroy(gameObject);    
+        }
     }
 }
