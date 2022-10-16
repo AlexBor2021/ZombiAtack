@@ -1,56 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _boardsCrash;
-    [SerializeField] private List<GameObject> _boards;
-
-    private int _health = 60;
+    [SerializeField] private List<BoardDoor> _boards;
+    [SerializeField] private Destructible _destructible;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private Button _fixButton;
+    [SerializeField] private FinishWave _finishWave;
+    
     private int _cuurentBoard = 0;
     private float _healthForPersent;
-    public int Health => _health;
-
+    private float _check = 0;
+    private const string _fix = "Fix";
     private void OnEnable()
     {
-        _healthForPersent = _health;
+        _healthForPersent = _destructible.Health;
+        _finishWave.FinishedWave += SetFixButton;
+    }
+    private void OnDisable()
+    {
+        _finishWave.FinishedWave -= SetFixButton;
     }
 
     private void Update()
     {
-        if (_health <= SetPersent(_healthForPersent, 65))
+        if (_boards.Count == _cuurentBoard)
+            return;
+
+        if (_destructible.Health <= SetPersent(_boards[_cuurentBoard].PersentForDestroy) && _check != _destructible.Health)
         {
-            DestroyDoor(0);
-        }
-        if (_health <= SetPersent(_healthForPersent, 35))
-        {
-            DestroyDoor(1);
-        }
-        if(_health <= SetPersent(_healthForPersent, 5))
-        {
-            DestroyDoor(2);
+            DestroyDoor(_cuurentBoard);
+            _check = _destructible.Health;
         }
     }
-
-    public void TakeDamage(int damage)
+    public void SetFixButton()
     {
-        _health -= damage;
+        if (_destructible.Health != _destructible.MaxHealth)
+        {
+            _fixButton.gameObject.SetActive(true);
+        }
     }
-
-    private float SetPersent(float number, float persentCurent)
+    public void RecoveryDoor()
     {
-        float persent = number / 100 * persentCurent;
+        _animator.enabled = true;
+        _animator.SetBool(_fix, true);
+        _destructible.RecoveryHealth();
+    }
+    private float SetPersent(float persentCurent)
+    {
+        float persent = _healthForPersent / 100 * persentCurent;
         return persent;
     }
-
     private void DestroyDoor(int numberBoard)
     {
-        if (_boards[numberBoard].activeSelf)
-        {
-            _boards[numberBoard].SetActive(false);
-            _boardsCrash[numberBoard].SetActive(true);
-            _cuurentBoard++;
-        }
+        _boards[numberBoard].Destroy();
+        _cuurentBoard++;
     }
 }

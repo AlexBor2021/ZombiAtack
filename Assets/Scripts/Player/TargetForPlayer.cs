@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TargetForPlayer : MonoBehaviour
 {
     [SerializeField] private List<Enemy> _enemies;
-    [SerializeField] private TargetsForEnemy _targetsForEnemy;
     [SerializeField] private ShootingPlayer _shootingPlayer;
+    [SerializeField] private Player _player;
 
     private Enemy _cuurentTarget;
 

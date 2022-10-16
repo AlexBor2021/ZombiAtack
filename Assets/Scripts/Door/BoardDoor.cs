@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class BoardDoor : MonoBehaviour
 {
+    [SerializeField] private GameObject _board;
     [SerializeField] private Rigidbody _boardsRb;
+
+    public float PersentForDestroy;
 
     private const string _offRbBoard = "OffRbBoard";
     private float _forse = 3000f;
 
-    private void OnEnable()
+    public void Destroy()
     {
-        _boardsRb.AddForce(transform.up * _forse);
+        _board.SetActive(false);
+        _boardsRb.gameObject.SetActive(true);
+        _boardsRb.AddForce(-transform.right * _forse);
         Invoke(_offRbBoard, 3f);
     }
 
     private void OffRbBoard()
     {
-        gameObject.SetActive(false);
+        _boardsRb.gameObject.SetActive(false);
     }
 }

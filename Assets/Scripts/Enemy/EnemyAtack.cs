@@ -7,59 +7,42 @@ public class EnemyAtack : MonoBehaviour
     [SerializeField] private EnemyMove _enemyMove;
 
     private TargetsForEnemy _targetsForEnemy;
-    private Door _door;
-    private Player _player;
-    private Coroutine _giveDamagePlayer;
-    private Coroutine _giveDamageDoor;
+    private Destructible _destructible;
+    private Coroutine _giveDamage;
     private int _damage = 5;
-    private float _dalay = 3f;
-    private float _distanceAtack = 2f;
-    private const string DamageOnDoor = "GiveDamageDoor";
-
-    private void OnEnable()
+    
+    private void Awake()
     {
         _targetsForEnemy = transform.parent.GetComponent<TargetsForEnemy>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent<Door>(out Door door))
+        if (other.TryGetComponent<Destructible>(out Destructible destructible))
         {
-            _door = door;
-            _giveDamageDoor = StartCoroutine(GiveDamageDoor());
+            _destructible = destructible;
+            if (_destructible.Health > 0)
+            {
+                _enemyMove.StopMoveTriger = true;
+            }
+            else
+            {
+                _enemyMove.StopMoveTriger = false;
+                _targetsForEnemy.DestroyTarget();
+            }    
         }
-        if (other.TryGetComponent<Player>(out Player player))
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<Destructible>(out Destructible destructible))
         {
-            Debug.Log(1);
-            _player = player;
-            _giveDamagePlayer = StartCoroutine(GiveDamagePlayer());
+            _destructible = null;
+            _enemyMove.StopMoveTriger = false;
         }
     }
 
-    private IEnumerator GiveDamageDoor()
+    public void GiveDamage()
     {
-        yield return new WaitForSeconds(0.5f);
-        while (_door.Health > 0)
-        {
-            _door.TakeDamage(_damage);
-            _enemyMove.StopMoveTriger = true;
-            yield return new WaitForSeconds(_dalay);
-        }
-        Debug.Log(_giveDamageDoor);
-        StopCoroutine(_giveDamageDoor);
-        _enemyMove.StopMoveTriger = false;
-        _targetsForEnemy.DestroyTarget();
-    }
-
-    private IEnumerator GiveDamagePlayer()
-    {
-        while (_player.Health > 0 && Vector3.Distance(transform.position, _player.transform.position) < _distanceAtack)
-        {
-            _player.TakeDamage(_damage);
-            _enemyMove.StopMoveTriger = true;
-            yield return new WaitForSeconds(_dalay);
-        }
-        StopCoroutine(_giveDamagePlayer);
-        _enemyMove.StopMoveTriger = false;
+        _destructible.TakeDamage(_damage);
     }
 }

@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMove : MonoBehaviour
 {
     [SerializeField] private EnemyAnimation _enemyAnimation;
-    [SerializeField] private Enemy _enemy;
-    [SerializeField] private float _speed;
+    [SerializeField] private Destructible _destructible;
+    [SerializeField] private NavMeshAgent _navMeshAgent;
 
     private TargetsForEnemy _targetsForEnemy;
     private GameObject _target;
+    
     public bool StopMoveTriger = false;
 
-    private void OnEnable()
+    private void Awake()
     {
         _targetsForEnemy = transform.parent.GetComponent<TargetsForEnemy>();
         _target = _targetsForEnemy.CurrentTarget;
@@ -20,22 +22,23 @@ public class EnemyMove : MonoBehaviour
 
     private void Update()
     {
-        if(_enemy.Health <= 0)
+        if(_destructible.Health <= 0)
             return;
         if (_target == null)
             return;
         
         _target = _targetsForEnemy.CurrentTarget;
 
-        if (StopMoveTriger == false)
+        if (StopMoveTriger == false )
         {
+            _navMeshAgent.isStopped = false;
             _enemyAnimation.SetAtackAndMove(false);
-            transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _speed * Time.deltaTime);
+            _navMeshAgent.SetDestination(_target.transform.position);
         }
         else
         {
+            _navMeshAgent.isStopped = true;
             _enemyAnimation.SetAtackAndMove(true);
         }
-        transform.LookAt(_target.transform);
     }
 }

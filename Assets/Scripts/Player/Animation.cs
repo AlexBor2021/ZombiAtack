@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Animation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Animator _animator;
 
-    // Update is called once per frame
-    void Update()
+    private const string _move = "Move";
+
+    public void SetMove(bool move)
     {
-        
+        _animator.SetBool(_move, move);
     }
 }

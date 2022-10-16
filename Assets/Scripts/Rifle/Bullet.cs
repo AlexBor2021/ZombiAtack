@@ -5,9 +5,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _effect;
+    [SerializeField] private int _damage;
 
     private float _speed = 15;
-    private int _damage = 1;
 
     private void OnEnable()
     {
