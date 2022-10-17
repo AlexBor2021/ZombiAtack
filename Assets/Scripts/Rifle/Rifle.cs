@@ -20,7 +20,6 @@ public class Rifle : MonoBehaviour
         _effectShoot.Stop();
     }
     public float RangeBullet => _rangeBullet;
-
     private IEnumerator CreatShell(Enemy enemy)
     {
         while (enemy != null)
@@ -33,7 +32,6 @@ public class Rifle : MonoBehaviour
         StopCoroutine(_shooting);
         _playerShoot = false;
     }
-
     public void ShootInEnemy(Enemy enemy)
     {
         if (_playerShoot == false)
@@ -42,7 +40,6 @@ public class Rifle : MonoBehaviour
             _playerShoot = true;
         }
     }
-
     public void StopShoot()
     {
         if (_shooting != null)
@@ -50,5 +47,13 @@ public class Rifle : MonoBehaviour
             StopCoroutine(_shooting);
             _playerShoot = false;
         }
+    }
+    public void UpgradeBullet(Bullet bullet)
+    {
+        _bullet = bullet;
+    }
+    public void UpgradeRate(float rate)
+    {
+        _dalayForShoting -= rate;
     }
 }

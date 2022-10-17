@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UnlockTower : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class UnlockTower : MonoBehaviour
     [SerializeField] private GameObject _upgrade;
     [SerializeField] private Transform _spawnTower;
     [SerializeField] private UpgradeManager _upgradeManager;
+    [SerializeField] private TextMeshProUGUI _costText;
 
     private Player _player;
 
@@ -18,6 +20,14 @@ public class UnlockTower : MonoBehaviour
         {
             _player = player;
             _panelUnlock.SetActive(true);
+            if (_player.Coin >= _towerLvlOne.Cost)
+            {
+                _costText.color = Color.white;
+            }
+            else
+            {
+                _costText.color = Color.red;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -28,7 +38,6 @@ public class UnlockTower : MonoBehaviour
             _panelUnlock.SetActive(false);
         }    
     }
-
     public void Unlock()
     {
         if (_player.Coin >= _towerLvlOne.Cost)

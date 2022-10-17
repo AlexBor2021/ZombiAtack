@@ -37,6 +37,10 @@ public class EnemySpawn : MonoBehaviour
         _barForAttacks.SetUIAttack();
         CountEnemyInWave = _currentWave.CountEnemy;
     }
+    public void RestartWave()
+    {
+        _currentWaveNumber--;
+    }
     private void InstatietEnemy()
     {
         foreach (var spawnPosition in _currentWave.Transforms)

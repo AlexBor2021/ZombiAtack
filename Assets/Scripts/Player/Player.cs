@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    private int _coin = 10000;
-    private int _almaz;
+    private int _coin = 0;
+    private int _almaz = 0;
 
     public int Coin => _coin;
     public event UnityAction<int> AddedCoin;

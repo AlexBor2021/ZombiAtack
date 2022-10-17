@@ -20,6 +20,14 @@ public class UpgradeManager : MonoBehaviour
         {
             _player = player;
             _upgradeCanvas.SetActive(true);
+            if (_player.Coin >= _towers[_numberTower].Cost)
+            {
+                _costTower.color = Color.white;
+            }
+            else
+            {
+                _costTower.color = Color.red;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
