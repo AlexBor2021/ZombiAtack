@@ -41,7 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 72826133513434204}
   - component: {fileID: 72826133513434205}
-  - component: {fileID: 4296448935354780243}
   - component: {fileID: 634782052}
   m_Layer: 7
   m_Name: Door
@@ -78,28 +77,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1465912, y: 1.95, z: 3.69}
-  m_Center: {x: 0.028295517, y: -0.9499999, z: -0.01999998}
---- !u!114 &4296448935354780243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72826133513434203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6004eff79a7abcb4f87a41ca2bb44c94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _boards:
-  - {fileID: 8775918943576758462}
-  - {fileID: 5324394469250957462}
-  - {fileID: 8988425871785094388}
-  _destructible: {fileID: 634782052}
-  _animator: {fileID: 1123487831}
-  _fixButton: {fileID: 2379230501565643585}
-  _finishWave: {fileID: 0}
+  m_Size: {x: 0.56739235, y: 1.95, z: 3.69}
+  m_Center: {x: -0.2613039, y: -0.9499999, z: -0.020000001}
 --- !u!114 &634782052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b91334a92904349bfddc721849dc6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 25
+  _health: 100
 --- !u!1 &72826133688932327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,6 +1103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8810561638795247540}
   - component: {fileID: 1123487831}
+  - component: {fileID: 1814219210}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -1171,6 +1151,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1814219210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3536312308279601444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6004eff79a7abcb4f87a41ca2bb44c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boards:
+  - {fileID: 8775918943576758462}
+  - {fileID: 5324394469250957462}
+  - {fileID: 8988425871785094388}
+  _destructible: {fileID: 634782052}
+  _animator: {fileID: 1123487831}
+  _fixButton: {fileID: 2379230501565643585}
+  _finishWave: {fileID: 0}
 --- !u!1 &3957151463172109413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,7 +1540,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4296448935354780243}
+      - m_Target: {fileID: 1814219210}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
         m_MethodName: RecoveryDoor
         m_Mode: 1

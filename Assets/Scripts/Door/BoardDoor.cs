@@ -22,6 +22,8 @@ public class BoardDoor : MonoBehaviour
 
     private void OffRbBoard()
     {
+        _boardsRb.transform.position = _board.transform.position;
+        _boardsRb.transform.rotation = _board.transform.rotation;
         _boardsRb.gameObject.SetActive(false);
     }
 }

@@ -5,31 +5,19 @@ using UnityEngine;
 public class EnemyAtack : MonoBehaviour
 {
     [SerializeField] private EnemyMove _enemyMove;
+    [SerializeField] private EnemyAnimation _enemyAnimation;
 
-    private TargetsForEnemy _targetsForEnemy;
     private Destructible _destructible;
     private Coroutine _giveDamage;
     private int _damage = 5;
-    
-    private void Awake()
-    {
-        _targetsForEnemy = transform.parent.GetComponent<TargetsForEnemy>();
-    }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Destructible>(out Destructible destructible))
         {
             _destructible = destructible;
-            if (_destructible.Health > 0)
-            {
-                _enemyMove.StopMoveTriger = true;
-            }
-            else
-            {
-                _enemyMove.StopMoveTriger = false;
-                _targetsForEnemy.DestroyTarget();
-            }    
+            Attack(true);
+            _giveDamage = StartCoroutine(GiveDamage());
         }
     }
     private void OnTriggerExit(Collider other)
@@ -37,12 +25,24 @@ public class EnemyAtack : MonoBehaviour
         if (other.TryGetComponent<Destructible>(out Destructible destructible))
         {
             _destructible = null;
-            _enemyMove.StopMoveTriger = false;
+            Attack(false);
+            if (_giveDamage != null)
+                StopCoroutine(_giveDamage);
         }
     }
-
-    public void GiveDamage()
+    private IEnumerator GiveDamage()
     {
-        _destructible.TakeDamage(_damage);
+        while (_destructible.Health > 0)
+        {
+            yield return new WaitForSeconds(2f);
+            _destructible.TakeDamage(_damage);
+        }
+        Attack(false);
+        StopCoroutine(_giveDamage);
+    }
+    private void Attack(bool work)
+    {
+        _enemyMove.StopMoveTriger = work;
+        _enemyAnimation.SetAtackAndMove(work);
     }
 }

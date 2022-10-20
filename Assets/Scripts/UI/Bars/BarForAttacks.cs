@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class BarForAttacks : MonoBehaviour
@@ -11,6 +12,8 @@ public class BarForAttacks : MonoBehaviour
     [SerializeField] private Button _nextWave;
     [SerializeField] private GameObject _upgradeShopText;
 
+    public event UnityAction StartedAttack;
+
     public void SetUIAttack()
     {
         _barDie.gameObject.SetActive(true);
@@ -18,6 +21,7 @@ public class BarForAttacks : MonoBehaviour
         _waveBar.gameObject.SetActive(true);
         _shop.gameObject.SetActive(false);
         _nextWave.gameObject.SetActive(false);
+        StartedAttack?.Invoke();
     }
     public void SetUIShop()
     {

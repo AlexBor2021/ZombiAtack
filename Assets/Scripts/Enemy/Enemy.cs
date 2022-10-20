@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyAnimation _enemyAnimation;
-    [SerializeField] private BoxCollider _triger;
+    [SerializeField] private NavMeshAgent _navMeshAgent;
+    [SerializeField] private Collider _triger;
     [SerializeField] private Coin _coin;
     [SerializeField] private Almaz _almaz;
-    [SerializeField] private Destructible _destructible;
     
+    private int _health = 15;
     private int _revardCoin = 1;
     private int _revardAlmaz = 1;
-  
+
+    public int Health => _health; 
     public int RevardCoin => _revardCoin;
     public int RewardAlmaz => _revardAlmaz;
 
@@ -22,22 +25,23 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (_destructible.Health <= 0)
+        if (_health <= 0)
         {
             Die();
         }
         else
         {
-            _destructible.TakeDamage(damage);
+            _health -= damage;
             _enemyAnimation.SetHit();
         }
-        if (_destructible.Health <= 0)
+        if (_health <= 0)
             Die();
     }
     private void Die()
     {
         _coin.gameObject.SetActive(true);
         _almaz.gameObject.SetActive(_almaz.Probability());
+        _navMeshAgent.speed = 0;
         _triger.enabled = false;
         _enemyAnimation.SetDie();
         DiedEnemy?.Invoke(this);

@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private EnemySpawn _enemySpawn;
     [SerializeField] private BarDie _barDie;
+    [SerializeField] private AllDoorRestart _allDoorRestart;
 
     private void OnEnable()
     {
@@ -27,6 +28,8 @@ public class Menu : MonoBehaviour
     {
         if (_barDie.isActiveAndEnabled)
         {
+            _allDoorRestart.RestartDoor();
+            _player.GetComponent<Destructible>().RecoveryHealth();
             _enemySpawn.RestartWave();
             _barForAttacks.SetUIShop();
             _player.transform.position = _playerPosition.position;

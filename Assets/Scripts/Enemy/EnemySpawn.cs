@@ -6,6 +6,7 @@ public class EnemySpawn : MonoBehaviour
 {
     [SerializeField] private List<Wave> _waves;
     [SerializeField] private TargetForPlayer _targetForPlayer;
+    [SerializeField] private TargetsForEnemy _targetsForEnemy;
     [SerializeField] private BarDie _barDie;
     [SerializeField] private BarForAttacks _barForAttacks;
     
@@ -31,11 +32,14 @@ public class EnemySpawn : MonoBehaviour
     }
     public void NextWave()
     {
-        _spawnedEnemy = 0;
-        _currentWave = _waves[_currentWaveNumber];
-        _currentWaveNumber++;
-        _barForAttacks.SetUIAttack();
-        CountEnemyInWave = _currentWave.CountEnemy;
+        if (_waves[_currentWaveNumber] != null)
+        {
+            _spawnedEnemy = 0;
+            _currentWave = _waves[_currentWaveNumber];
+            _currentWaveNumber++;
+            _barForAttacks.SetUIAttack();
+            CountEnemyInWave = _currentWave.CountEnemy;
+        }
     }
     public void RestartWave()
     {
@@ -43,12 +47,11 @@ public class EnemySpawn : MonoBehaviour
     }
     private void InstatietEnemy()
     {
-        foreach (var spawnPosition in _currentWave.Transforms)
-        {
-            var enemy = Instantiate(_currentWave.Enemy, spawnPosition).GetComponent<Enemy>();
-            _targetForPlayer.AddEnemy(enemy);
-            enemy.DiedEnemy += _barDie.SetCountDie;
-        }
+        int number = Random.Range(0, _currentWave.Transforms.Count);
+        var enemy = Instantiate(_currentWave.Enemy, _currentWave.Transforms[number]).GetComponent<Enemy>();
+        _targetForPlayer.AddEnemy(enemy);
+        enemy.DiedEnemy += _barDie.SetCountDie;
+        enemy.gameObject.transform.GetComponentInChildren<EnemyMove>().SetTarget(_targetsForEnemy.Target);
     }
 
     [System.Serializable]

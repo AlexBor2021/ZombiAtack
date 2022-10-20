@@ -6,39 +6,32 @@ using UnityEngine.AI;
 public class EnemyMove : MonoBehaviour
 {
     [SerializeField] private EnemyAnimation _enemyAnimation;
-    [SerializeField] private Destructible _destructible;
     [SerializeField] private NavMeshAgent _navMeshAgent;
 
-    private TargetsForEnemy _targetsForEnemy;
     private GameObject _target;
+    public GameObject Target => _target;
     
     public bool StopMoveTriger = false;
 
-    private void Awake()
-    {
-        _targetsForEnemy = transform.parent.GetComponent<TargetsForEnemy>();
-        _target = _targetsForEnemy.CurrentTarget;
-    }
-
     private void Update()
     {
-        if(_destructible.Health <= 0)
-            return;
-        if (_target == null)
-            return;
-        
-        _target = _targetsForEnemy.CurrentTarget;
-
-        if (StopMoveTriger == false )
+        if (_target.GetComponent<Destructible>().Health <= 0)
         {
-            _navMeshAgent.isStopped = false;
-            _enemyAnimation.SetAtackAndMove(false);
+            Destroy(gameObject);
+            return;
+        }
+        if (StopMoveTriger == false)
+        {
+            _navMeshAgent.Resume();
             _navMeshAgent.SetDestination(_target.transform.position);
         }
         else
         {
-            _navMeshAgent.isStopped = true;
-            _enemyAnimation.SetAtackAndMove(true);
+            _navMeshAgent.Stop();
         }
+    }
+    public void SetTarget(GameObject player)
+    {
+        _target = player;
     }
 }

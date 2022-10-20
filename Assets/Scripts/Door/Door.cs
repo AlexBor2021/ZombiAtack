@@ -46,8 +46,12 @@ public class Door : MonoBehaviour
     public void RecoveryDoor()
     {
         _animator.enabled = true;
-        _animator.SetBool(_fix, true);
         _destructible.RecoveryHealth();
+        _cuurentBoard = 0;
+    }
+    public void OffAnimator()
+    {
+        _animator.enabled = false;
     }
     private float SetPersent(float persentCurent)
     {
