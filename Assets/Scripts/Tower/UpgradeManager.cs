@@ -45,7 +45,7 @@ public class UpgradeManager : MonoBehaviour
         }
         _currentTower = tower;
     }
-    public void SetTower()
+    public void BuyTower()
     {
         if (_player.Coin >= _towers[_numberTower].Cost)
         {
