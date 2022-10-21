@@ -16,7 +16,7 @@ public class BarDie : MonoBehaviour
     }
     private void OnDisable()
     {
-        _countDie = 0;
+        Restart();
     }
     public void SetCountDie(Enemy enemy)
     {
@@ -24,5 +24,9 @@ public class BarDie : MonoBehaviour
         _countDie++;
         _textDie.text = _countDie.ToString();
         _finishWave.FihishingWave(_countDie);
+    }
+    public void Restart()
+    {
+        _countDie = 0;
     }
 }

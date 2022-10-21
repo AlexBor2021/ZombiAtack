@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
     {
         _coin = _coinInBeginWave;
         _almaz = _coinInBeginWave;
+        transform.position = new Vector3(0, 0, 0);
     }
     public void SetSkinMaterial(Material material, SkinInstaller skinInstaller)
     {

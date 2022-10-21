@@ -43,7 +43,8 @@ public class EnemySpawn : MonoBehaviour
     }
     public void RestartWave()
     {
-        _currentWaveNumber--;
+        if (_currentWaveNumber != 0)
+            _currentWaveNumber--;
     }
     private void InstatietEnemy()
     {

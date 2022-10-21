@@ -5,7 +5,6 @@ using UnityEngine;
 public class Menu : MonoBehaviour
 {
     [SerializeField] private BarForAttacks _barForAttacks;
-    [SerializeField] private Transform _playerPosition;
     [SerializeField] private Player _player;
     [SerializeField] private EnemySpawn _enemySpawn;
     [SerializeField] private BarDie _barDie;
@@ -26,15 +25,18 @@ public class Menu : MonoBehaviour
     }
     public void Restart()
     {
-        if (_barDie.isActiveAndEnabled)
+        _allDoorRestart.RestartDoor();
+        _player.GetComponent<Destructible>().RecoveryHealth();
+        _enemySpawn.RestartWave();
+        _barForAttacks.SetUIShop();
+        _player.ResartCoinAndAlmaz();
+        _barDie.Restart();
+        gameObject.SetActive(false);
+        var enemeis = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var enemy in enemeis)
         {
-            _allDoorRestart.RestartDoor();
-            _player.GetComponent<Destructible>().RecoveryHealth();
-            _enemySpawn.RestartWave();
-            _barForAttacks.SetUIShop();
-            _player.transform.position = _playerPosition.position;
+            Destroy(enemy);
         }
         Time.timeScale = 1;
-        gameObject.SetActive(false);
     }
 }
