@@ -52,7 +52,6 @@ public class EnemySpawn : MonoBehaviour
         int spread = Random.Range(-10, 10);
         var enemy = Instantiate(_currentWave.Enemy, (_currentWave.Transforms[number])).GetComponent<Enemy>();
         enemy.transform.position += new Vector3(spread, 0, spread);
-        Debug.Log(enemy.transform.position);
         _targetForPlayer.AddEnemy(enemy);
         enemy.DiedEnemy += _barDie.SetCountDie;
         enemy.gameObject.transform.GetComponentInChildren<EnemyMove>().SetTarget(_targetsForEnemy.Target);
