@@ -26,7 +26,7 @@ public class ShootingTower : MonoBehaviour
     {
         if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            if (enemy.GetComponent<Destructible>().Health > 0)
+            if (enemy.Health > 0)
                 SetTarget(enemy);
         }
     }
@@ -43,7 +43,7 @@ public class ShootingTower : MonoBehaviour
         {
             _targetCurrent = enemy;
         }
-        else if (_targetCurrent.GetComponent<Destructible>().Health <= 0)
+        else if (_targetCurrent.Health <= 0)
         {
             _targetCurrent = enemy;
         }

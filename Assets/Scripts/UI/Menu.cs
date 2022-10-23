@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] private BarForAttacks _barForAttacks;
+    [SerializeField] private ModeSwitchUI _barForAttacks;
     [SerializeField] private Player _player;
     [SerializeField] private EnemySpawn _enemySpawn;
     [SerializeField] private BarDie _barDie;

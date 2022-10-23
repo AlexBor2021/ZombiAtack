@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DoorHealthUpgrade : MonoBehaviour
 {
@@ -9,11 +10,14 @@ public class DoorHealthUpgrade : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private TextMeshProUGUI _numberLevel;
     [SerializeField] private Player _player;
+    [SerializeField] private Button _buyButton;
 
     private int _cost = 50;
     private int _health = 100;
     private int _levelNext = 2;
-    
+    private int _maxLevell = 5;
+    private const string _max = "max";
+
     private void Awake()
     {
         _costText.text = _cost.ToString();
@@ -45,9 +49,17 @@ public class DoorHealthUpgrade : MonoBehaviour
     }
     private void SetUI()
     {
-        _cost *= 2;
         _levelNext++;
-        _costText.text = _cost.ToString();
-        _numberLevel.text = _levelNext.ToString();
+        if (_levelNext <= _maxLevell)
+        {
+            _cost *= 2;
+            _costText.text = _cost.ToString();
+            _numberLevel.text = _levelNext.ToString();
+        }
+        else
+        {
+            _costText.text = _max.ToString();
+            _buyButton.interactable = false;
+        }
     }
 }

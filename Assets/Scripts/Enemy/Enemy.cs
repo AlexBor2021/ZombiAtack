@@ -8,6 +8,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyAnimation _enemyAnimation;
+    [SerializeField] private EnemyAtack _enemyAtack;
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private Collider _triger;
     [SerializeField] private Coin _coin;
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
         if (_health <= 0)
         {
             Die();
+            OffAttack();
         }
         else
         {
@@ -35,7 +37,10 @@ public class Enemy : MonoBehaviour
             _enemyAnimation.SetHit();
         }
         if (_health <= 0)
+        {
             Die();
+            OffAttack();
+        }
     }
     private void Die()
     {
@@ -46,5 +51,9 @@ public class Enemy : MonoBehaviour
         _enemyAnimation.SetDie();
         DiedEnemy?.Invoke(this);
         Destroy(gameObject, 2f);
+    }
+    private void OffAttack()    
+    {
+        _enemyAtack.enabled = false;
     }
 }

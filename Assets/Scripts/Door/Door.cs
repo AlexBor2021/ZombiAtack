@@ -46,6 +46,7 @@ public class Door : MonoBehaviour
     public void RecoveryDoor()
     {
         _animator.enabled = true;
+        _fixButton.gameObject.SetActive(false);
         _destructible.RecoveryHealth();
         _cuurentBoard = 0;
     }

@@ -15,7 +15,7 @@ public class Almaz : MonoBehaviour
 
     public bool Probability()
     {
-        int number = Random.Range(0, 10);
+        int number = Random.Range(0, 20);
         if (number == _numberProability)
         {
             return true;

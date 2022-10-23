@@ -20,4 +20,8 @@ public class ShopManager : MonoBehaviour
             _shopPanel.SetActive(false);
         }
     }
+    private void OnDisable()
+    {
+        _shopPanel.SetActive(false);
+    }
 }

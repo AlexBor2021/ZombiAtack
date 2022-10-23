@@ -727,7 +727,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 817974865e3997341bea6a58ead0ddeb, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -747,6 +747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyAnimation: {fileID: 1969719834}
+  _enemyAtack: {fileID: 7307458274604404780}
   _navMeshAgent: {fileID: 809473964204121798}
   _triger: {fileID: 1109175932301115044}
   _coin: {fileID: 1829617494003803490}

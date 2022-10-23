@@ -22,12 +22,12 @@ public class EnemyMove : MonoBehaviour
         }
         if (StopMoveTriger == false)
         {
-            _navMeshAgent.Resume();
+            _navMeshAgent.isStopped = false;
             _navMeshAgent.SetDestination(_target.transform.position);
         }
         else
         {
-            _navMeshAgent.Stop();
+            _navMeshAgent.isStopped = true;
         }
     }
     public void SetTarget(GameObject player)

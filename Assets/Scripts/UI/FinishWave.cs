@@ -8,7 +8,7 @@ public class FinishWave : MonoBehaviour
 {
     [SerializeField] private EnemySpawn _enemySpawn;
     [SerializeField] private TextMeshProUGUI _text;
-    [SerializeField] private BarForAttacks _barForAttacks;
+    [SerializeField] private ModeSwitchUI _barForAttacks;
 
     public event UnityAction FinishedWave;
 

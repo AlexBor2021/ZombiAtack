@@ -8,14 +8,18 @@ public class BarAlmaz : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _almazBar;
     [SerializeField] private Player _player;
 
+    private void Awake()
+    {
+        _almazBar.text = _player.Almaz.ToString();
+    }
     private void OnEnable()
     {
-        _player.AddedAlmaz += RefreshBar;
+        _player.ChangedAlmaz += RefreshBar;
     }
 
     private void OnDisable()
     {
-        _player.AddedAlmaz -= RefreshBar;
+        _player.ChangedAlmaz -= RefreshBar;
     }
 
     private void RefreshBar(int almazPlayer)

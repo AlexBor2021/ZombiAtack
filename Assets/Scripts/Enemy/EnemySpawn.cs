@@ -8,7 +8,7 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private TargetForPlayer _targetForPlayer;
     [SerializeField] private TargetsForEnemy _targetsForEnemy;
     [SerializeField] private BarDie _barDie;
-    [SerializeField] private BarForAttacks _barForAttacks;
+    [SerializeField] private ModeSwitchUI _barForAttacks;
     
     private Wave _currentWave;
     private int _currentWaveNumber = 0;
@@ -49,7 +49,10 @@ public class EnemySpawn : MonoBehaviour
     private void InstatietEnemy()
     {
         int number = Random.Range(0, _currentWave.Transforms.Count);
-        var enemy = Instantiate(_currentWave.Enemy, _currentWave.Transforms[number]).GetComponent<Enemy>();
+        int spread = Random.Range(-10, 10);
+        var enemy = Instantiate(_currentWave.Enemy, (_currentWave.Transforms[number])).GetComponent<Enemy>();
+        enemy.transform.position += new Vector3(spread, 0, spread);
+        Debug.Log(enemy.transform.position);
         _targetForPlayer.AddEnemy(enemy);
         enemy.DiedEnemy += _barDie.SetCountDie;
         enemy.gameObject.transform.GetComponentInChildren<EnemyMove>().SetTarget(_targetsForEnemy.Target);

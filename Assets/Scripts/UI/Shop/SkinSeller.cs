@@ -16,7 +16,7 @@ public class SkinSeller : MonoBehaviour
     }
     private void Update()
     {
-        if (_player.Coin >= _cost)
+        if (_player.Almaz >= _cost)
         {
             _textCost.color = Color.white;
         }
@@ -27,9 +27,9 @@ public class SkinSeller : MonoBehaviour
     }
     public void BuySkin()
     {
-        if (_player.Coin >= _cost)
+        if (_player.Almaz >= _cost)
         {
-            _player.GiveCoin(_cost);
+            _player.GiveAlmaz(_cost);
             _skinInstaller.ActiveButton();
         }
     }
