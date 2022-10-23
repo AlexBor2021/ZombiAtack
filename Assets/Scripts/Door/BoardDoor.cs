@@ -7,12 +7,20 @@ public class BoardDoor : MonoBehaviour
     [SerializeField] private GameObject _board;
     [SerializeField] private GameObject _boardDestractabl;
 
+    private const string _offBoardDestractabl = "OffBoardDestractabl";
+
     public float PersentForDestroy;
     public void Destroy()
     {
         _board.SetActive(false);
-        var boardDestractabl = Instantiate(_boardDestractabl, transform.position, transform.rotation);
-        Destroy(boardDestractabl, 2f);
+        _boardDestractabl.SetActive(true);
+        Invoke(_offBoardDestractabl, 2f);
     }
-    
+
+    public void OffBoardDestractabl()
+    {
+        _boardDestractabl.SetActive(false);
+    }
+
+
 }

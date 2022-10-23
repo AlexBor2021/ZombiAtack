@@ -22,6 +22,7 @@ public class ShopManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        _shopPanel.SetActive(false);
+        if (_shopPanel.activeSelf)
+            _shopPanel.SetActive(false);
     }
 }

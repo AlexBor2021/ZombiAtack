@@ -9,10 +9,13 @@ public class Part : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _startPosition = GetComponent<Transform>();
     }
 
     private void OnEnable()
     {
+        transform.position = _startPosition.position;
+        transform.rotation = _startPosition.rotation;
         int number = Random.Range(100, 400);
         _rb.AddForce(-Vector3.right * number);
     }
