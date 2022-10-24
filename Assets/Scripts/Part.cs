@@ -16,7 +16,7 @@ public class Part : MonoBehaviour
     {
         transform.position = _startPosition.position;
         transform.rotation = _startPosition.rotation;
-        int number = Random.Range(100, 400);
+        int number = Random.Range(800, 1300);
         _rb.AddForce(-Vector3.right * number);
     }
 }

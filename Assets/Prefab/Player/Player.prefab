@@ -516,6 +516,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1898891960915603038}
+  _effectCoin: {fileID: 0}
+  _effectAlmaz: {fileID: 0}
 --- !u!1 &5507361958020839553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,7 +1032,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 34f740c99c609404fbd4cdfc6976cd22, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1048,8 +1050,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9405029, y: 0.52829367, z: 2.4897022}
-  m_Center: {x: 0.042811424, y: 0.28403333, z: 0.47393885}
+  m_Size: {x: 0.7018934, y: 0.9616898, z: 1.3534639}
+  m_Center: {x: -0.030450085, y: 0.40584457, z: 0.2007178}
 --- !u!54 &5493749735590811878
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1078,9 +1080,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a3e15774f8f1849bac91d0b93bfe84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 5507361958023951841}
-  _destructible: {fileID: 0}
+  _skinnedMeshRenderer: {fileID: 5507361958023951841}
+  _destructible: {fileID: 5277571688257803491}
   _panelDie: {fileID: 0}
+  _barForAttacks: {fileID: 0}
+  _skinInstallerDefoult: {fileID: 0}
 --- !u!114 &5493749735590811884
 MonoBehaviour:
   m_ObjectHideFlags: 0

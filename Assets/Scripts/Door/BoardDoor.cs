@@ -5,22 +5,13 @@ using UnityEngine;
 public class BoardDoor : MonoBehaviour
 {
     [SerializeField] private GameObject _board;
-    [SerializeField] private GameObject _boardDestractabl;
-
-    private const string _offBoardDestractabl = "OffBoardDestractabl";
+    [SerializeField] private GameObject _boardDestractablPrefab;
 
     public float PersentForDestroy;
     public void Destroy()
     {
         _board.SetActive(false);
-        _boardDestractabl.SetActive(true);
-        Invoke(_offBoardDestractabl, 2f);
+        var BoardDestractabl = Instantiate(_boardDestractablPrefab, transform);
+        Destroy(BoardDestractabl, 2f);
     }
-
-    public void OffBoardDestractabl()
-    {
-        _boardDestractabl.SetActive(false);
-    }
-
-
 }

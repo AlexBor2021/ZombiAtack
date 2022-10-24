@@ -22,7 +22,7 @@ public class ShopManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        if (_shopPanel.activeSelf)
+        if (_shopPanel != null)
             _shopPanel.SetActive(false);
     }
 }

@@ -9,6 +9,7 @@ public class FinishWave : MonoBehaviour
     [SerializeField] private EnemySpawn _enemySpawn;
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private ModeSwitchUI _barForAttacks;
+    [SerializeField] private List<ParticleSystem> _effects;
 
     public event UnityAction FinishedWave;
 
@@ -19,11 +20,19 @@ public class FinishWave : MonoBehaviour
             FinishedWave?.Invoke();
             _text.gameObject.SetActive(true);
             _barForAttacks.SetUIShop();
-            Invoke("OffText", 4);
+            Invoke("OffText", 3);
+            foreach (var effect in _effects)
+            {
+                effect.gameObject.SetActive(true);
+            }
         }
     }
     public void OffText()
     {
+        foreach (var effect in _effects)
+        {
+            effect.gameObject.SetActive(false);
+        }
         _text.gameObject.SetActive(false);
     }
 }

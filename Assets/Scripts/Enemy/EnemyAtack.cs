@@ -8,7 +8,6 @@ public class EnemyAtack : MonoBehaviour
     [SerializeField] private EnemyAnimation _enemyAnimation;
 
     private Destructible _destructible;
-    private Coroutine _giveDamage;
     private int _damage = 5;
 
     private void OnTriggerEnter(Collider other)
@@ -17,7 +16,6 @@ public class EnemyAtack : MonoBehaviour
         {
             _destructible = destructible;
             Attack(true);
-            _giveDamage = StartCoroutine(GiveDamage());
         }
     }
     private void OnTriggerExit(Collider other)
@@ -26,19 +24,18 @@ public class EnemyAtack : MonoBehaviour
         {
             _destructible = null;
             Attack(false);
-            if (_giveDamage != null)
-                StopCoroutine(_giveDamage);
         }
     }
-    private IEnumerator GiveDamage()
+    private void GiveDamage()
     {
-        while (_destructible.Health > 0)
+        if (_destructible.Health > 0 && _destructible != null)
         {
-            yield return new WaitForSeconds(2f);
             _destructible.TakeDamage(_damage);
         }
-        Attack(false);
-        StopCoroutine(_giveDamage);
+        else
+        {
+            Attack(false);
+        }
     }
     private void Attack(bool work)
     {
