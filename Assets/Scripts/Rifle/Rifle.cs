@@ -8,9 +8,9 @@ public class Rifle : MonoBehaviour
     [SerializeField] private Bullet _bullet;
     [SerializeField] private Transform _spawnBullet;
     [SerializeField] private Transform _spawShell;
-    [SerializeField] private float _dalayForShoting;
     [SerializeField] private ParticleSystem _effectShoot;
     
+    private float _dalayForShoting = 0.5f;
     private float _rangeBullet = 10f;
     private bool _playerShoot = false;
     private Coroutine _shooting;

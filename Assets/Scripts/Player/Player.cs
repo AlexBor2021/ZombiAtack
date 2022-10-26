@@ -11,24 +11,19 @@ public class Player : MonoBehaviour
     [SerializeField] private ModeSwitchUI _barForAttacks;
     [SerializeField] private SkinInstaller _skinInstallerDefoult;
 
-    private SkinInstaller _skinInstaller;
-    private int _coin = 5000;
-    private int _almaz = 0;
-    private int _coinInBeginWave = 0;
-    private int _almazInBeginWave = 0;
+    private BasaData _basaData;
 
+    private SkinInstaller _skinInstaller;
+    private int _coin = 0;
+    private int _almaz = 0;
     public int Coin => _coin;
     public int Almaz => _almaz;
     public event UnityAction<int> ChangedCoin;
     public event UnityAction<int> ChangedAlmaz;
+
     private void OnEnable()
     {
         _skinInstaller = _skinInstallerDefoult;
-        _barForAttacks.StartedAttack += SetCoinAndAlmazInWave;
-    }
-    private void OnDisable()
-    {
-        _barForAttacks.StartedAttack -= SetCoinAndAlmazInWave;
     }
     private void Update()
     {
@@ -53,15 +48,12 @@ public class Player : MonoBehaviour
     public void GiveAlmaz(int almaz)
     {
         _almaz -= almaz;
-        ChangedAlmaz?.Invoke(_coin);
-    }
-    public void ResartCoinAndAlmaz()
-    {
-        _coin = _coinInBeginWave;
-        _almaz = _almazInBeginWave;
-        transform.position = new Vector3(0, 0, 0);
-        ChangedCoin?.Invoke(_coin);
         ChangedAlmaz?.Invoke(_almaz);
+    }
+    public void Restart()
+    {
+        transform.position = new Vector3(0, 0, 0);
+        _destructible.RecoveryHealth();
     }
     public void SetSkinMaterial(Material material, SkinInstaller skinInstaller)
     {
@@ -69,14 +61,17 @@ public class Player : MonoBehaviour
         _skinnedMeshRenderer.material = material;
         _skinInstaller = skinInstaller;
     }
+
+    public void Initialise(int coin, int almaz)
+    {
+        _coin = coin;
+        _almaz = almaz;
+        ChangedCoin?.Invoke(_coin);
+        ChangedAlmaz?.Invoke(_almaz);
+    }
     private void Die()
     {
         Time.timeScale = 0;
         _panelDie.SetActive(true);
-    }
-    private void SetCoinAndAlmazInWave()
-    {
-        _almazInBeginWave = _almaz;
-        _coinInBeginWave = _coin;
     }
 }

@@ -7,9 +7,8 @@ public class UnlockTower : MonoBehaviour
 {
     [SerializeField] private GameObject _panelUnlock;
     [SerializeField] private Tower _towerLvlOne;
-    [SerializeField] private GameObject _upgrade;
     [SerializeField] private Transform _spawnTower;
-    [SerializeField] private UpgradeManager _upgradeManager;
+    [SerializeField] private UpgradeTower _upgradeManager;
     [SerializeField] private TextMeshProUGUI _costText;
 
     private Player _player;
@@ -40,7 +39,7 @@ public class UnlockTower : MonoBehaviour
     }
     public void Unlock()
     {
-        if (_player.Coin >= _towerLvlOne.Cost)
+        if (_player.Coin >= _towerLvlOne.Cost || _player == null)
         {
             _player.GiveCoin(_towerLvlOne.Cost);
             var tower = Instantiate(_towerLvlOne, _spawnTower.position, Quaternion.identity);
@@ -50,9 +49,8 @@ public class UnlockTower : MonoBehaviour
             Invoke("Enable", 0.2f);
         }
     }
-
     private void Enable()
     {
-        gameObject.SetActive(false);
+        _upgradeManager.gameObject.SetActive(false);
     }
 }

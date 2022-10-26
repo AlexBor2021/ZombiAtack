@@ -30,7 +30,6 @@ public class SkinInstaller : MonoBehaviour
     }
     public void SkinTakeOff()
     {
-        Debug.Log(1);
         _buttonSetSkin.GetComponentInChildren<TextMeshProUGUI>().text = _set;
         _buttonSetSkin.interactable = true;
         _buttonSetSkin.colors.normalColor.CompareRGB(Color.white);

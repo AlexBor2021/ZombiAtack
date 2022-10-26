@@ -20,7 +20,7 @@ public class FinishWave : MonoBehaviour
             FinishedWave?.Invoke();
             _text.gameObject.SetActive(true);
             _barForAttacks.SetUIShop();
-            Invoke("OffText", 3);
+            Invoke("OffText", 2);
             foreach (var effect in _effects)
             {
                 effect.gameObject.SetActive(true);

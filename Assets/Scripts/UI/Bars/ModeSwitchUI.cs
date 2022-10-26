@@ -17,8 +17,8 @@ public class ModeSwitchUI : MonoBehaviour
     public void SetUIAttack()
     {
         _barDie.gameObject.SetActive(true);
-        _shopManager.gameObject.SetActive(false);
         _waveBar.gameObject.SetActive(true);
+        _shopManager.gameObject.SetActive(false);
         _shopButton.gameObject.SetActive(false);
         _nextWave.gameObject.SetActive(false);
         StartedAttack?.Invoke();

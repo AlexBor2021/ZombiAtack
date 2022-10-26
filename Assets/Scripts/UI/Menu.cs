@@ -26,17 +26,15 @@ public class Menu : MonoBehaviour
     public void Restart()
     {
         _allDoorRestart.RestartDoor();
-        _player.GetComponent<Destructible>().RecoveryHealth();
-        _enemySpawn.RestartWave();
-        _barForAttacks.SetUIShop();
-        _player.ResartCoinAndAlmaz();
+        _player.Restart();
         _barDie.Restart();
-        gameObject.SetActive(false);
         var enemeis = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (var enemy in enemeis)
         {
             Destroy(enemy);
         }
+        _enemySpawn.Restart();
+        gameObject.SetActive(false);
         Time.timeScale = 1;
     }
 }

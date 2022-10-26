@@ -18,6 +18,8 @@ public class DoorHealthUpgrade : MonoBehaviour
     private int _maxLevell = 5;
     private const string _max = "max";
 
+    public int Currentlevel = 1;
+
     private void Awake()
     {
         _costText.text = _cost.ToString();
@@ -41,6 +43,7 @@ public class DoorHealthUpgrade : MonoBehaviour
                 door.UpgradeHealth(_health);
             }
             SetUI();
+            Currentlevel++;
         }
         else
         {
@@ -60,6 +63,17 @@ public class DoorHealthUpgrade : MonoBehaviour
         {
             _costText.text = _max.ToString();
             _buyButton.interactable = false;
+        }
+    }
+    private void SetCurrentLevel(int level)
+    {
+        for (int i = 1; i < level; i++)
+        {
+            SetUI();
+            foreach (var door in _destructibleDoors)
+            {
+                door.UpgradeHealth(_health);
+            }
         }
     }
 }

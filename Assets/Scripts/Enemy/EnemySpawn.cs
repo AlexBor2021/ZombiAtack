@@ -41,10 +41,15 @@ public class EnemySpawn : MonoBehaviour
             CountEnemyInWave = _currentWave.CountEnemy;
         }
     }
-    public void RestartWave()
+    public void Initialise(int currentWaveData)
     {
-        if (_currentWaveNumber != 0)
-            _currentWaveNumber--;
+        _currentWaveNumber = currentWaveData;
+        _spawnedEnemy = _waves[_currentWaveNumber].CountEnemy;
+    }
+    public void Restart()
+    {
+        _currentWaveNumber--;
+        NextWave();
     }
     private void InstatietEnemy()
     {

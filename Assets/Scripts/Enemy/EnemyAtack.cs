@@ -15,7 +15,8 @@ public class EnemyAtack : MonoBehaviour
         if (other.TryGetComponent<Destructible>(out Destructible destructible))
         {
             _destructible = destructible;
-            Attack(true);
+            if(_destructible.Health > 0)
+                Attack(true);
         }
     }
     private void OnTriggerExit(Collider other)

@@ -18,6 +18,7 @@ public class RateRifleUpgrade : MonoBehaviour
     private int _maxLevell = 5;
     private const string _max = "max";
 
+    public int Currentlevel = 1;
     private void Awake()
     {
         _costText.text = _cost.ToString();
@@ -38,6 +39,7 @@ public class RateRifleUpgrade : MonoBehaviour
             _player.GiveCoin(_cost);
             _rifle.UpgradeRate(_rate);
             SetUI();
+            Currentlevel++;
         }
     }
     private void SetUI()
@@ -53,6 +55,14 @@ public class RateRifleUpgrade : MonoBehaviour
         {
             _costText.text = _max.ToString();
             _buyButton.interactable = false;
+        }
+    }
+    private void SetCurrentLevel(int level)
+    {
+        for (int i = 1; i < level; i++)
+        {
+            SetUI();
+            _rifle.UpgradeRate(_rate);
         }
     }
 }

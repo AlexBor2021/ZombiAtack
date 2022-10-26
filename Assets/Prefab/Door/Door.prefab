@@ -1045,7 +1045,7 @@ GameObject:
   - component: {fileID: 2379230501565643585}
   - component: {fileID: 3205698636129032249}
   m_Layer: 5
-  m_Name: Button
+  m_Name: FixButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1189,3 +1189,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98d0d8df6f219c74db517a7a0036b664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _modeSwitchUI: {fileID: 0}

@@ -13,16 +13,15 @@ public class Door : MonoBehaviour
     
     private int _cuurentBoard = 0;
     private float _healthForPersent;
-    private float _check = 0;
     private const string _fix = "Fix";
     private void OnEnable()
     {
         _healthForPersent = _destructible.Health;
-        _finishWave.FinishedWave += SetFixButton;
+        _finishWave.FinishedWave += OnFixButton;
     }
     private void OnDisable()
     {
-        _finishWave.FinishedWave -= SetFixButton;
+        _finishWave.FinishedWave -= OnFixButton;
     }
 
     private void Update()
@@ -30,13 +29,12 @@ public class Door : MonoBehaviour
         if (_boards.Count == _cuurentBoard)
             return;
 
-        if (_destructible.Health <= SetPersent(_boards[_cuurentBoard].PersentForDestroy) && _check != _destructible.Health)
+        if (_destructible.Health <= SetPersent(_boards[_cuurentBoard].PersentForDestroy))
         {
             DestroyDoor(_cuurentBoard);
-            _check = _destructible.Health;
         }
     }
-    public void SetFixButton()
+    public void OnFixButton()
     {
         if (_destructible.Health != _destructible.MaxHealth)
         {
