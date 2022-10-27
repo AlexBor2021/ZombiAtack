@@ -5,12 +5,14 @@ using UnityEngine;
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] private GameObject _shopPanel;
+    [SerializeField] private UIStay _uiStay;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Player>(out Player player))
         {
             _shopPanel.SetActive(true);
+            _uiStay.SetColorIcon(true);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -18,6 +20,7 @@ public class ShopManager : MonoBehaviour
         if (other.TryGetComponent<Player>(out Player player))
         {
             _shopPanel.SetActive(false);
+            _uiStay.SetColorIcon(false);
         }
     }
     private void OnDisable()

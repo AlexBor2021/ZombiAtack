@@ -23,6 +23,5 @@ public class TowerSave : MonoBehaviour
     public void TakeLevelTower(int levelUpgradeTower)
     {
         _levelTower = levelUpgradeTower;
-        _levelTower++;
     }
 }

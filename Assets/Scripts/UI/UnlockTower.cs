@@ -5,52 +5,47 @@ using TMPro;
 
 public class UnlockTower : MonoBehaviour
 {
-    [SerializeField] private GameObject _panelUnlock;
-    [SerializeField] private Tower _towerLvlOne;
-    [SerializeField] private Transform _spawnTower;
+    [SerializeField] private GameObject _unlockCanvas;
+    [SerializeField] private GameObject _castleImage;
     [SerializeField] private UpgradeTower _upgradeManager;
     [SerializeField] private TextMeshProUGUI _costText;
+    [SerializeField] private BoxCollider _boxCollider;
 
+    private int _costUnLock = 10;
     private Player _player;
-
+     
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Player>(out Player player))
         {
             _player = player;
-            _panelUnlock.SetActive(true);
-            if (_player.Coin >= _towerLvlOne.Cost)
-            {
-                _costText.color = Color.white;
-            }
-            else
-            {
-                _costText.color = Color.red;
-            }
+            _unlockCanvas.SetActive(true);
         }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (_player.Coin >= _costUnLock && _player != null)
+            _costText.color = Color.white;
+        else
+            _costText.color = Color.red;
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent<Player>(out Player player))
         {
             _player = null;
-            _panelUnlock.SetActive(false);
+            _unlockCanvas.SetActive(false);
         }    
     }
     public void Unlock()
     {
-        if (_player.Coin >= _towerLvlOne.Cost || _player == null)
+        if (_player.Coin >= _costUnLock)
         {
-            _player.GiveCoin(_towerLvlOne.Cost);
-            var tower = Instantiate(_towerLvlOne, _spawnTower.position, Quaternion.identity);
-            _upgradeManager.SetCuurentTower(tower);
-            _panelUnlock.SetActive(false);
-            _upgrade.SetActive(true);
-            Invoke("Enable", 0.2f);
+            _player.GiveCoin(_costUnLock);
+            Destroy(_castleImage);
+            Destroy(_unlockCanvas);
+            _upgradeManager.gameObject.SetActive(true);
+            _boxCollider.enabled = false;
         }
-    }
-    private void Enable()
-    {
-        _upgradeManager.gameObject.SetActive(false);
     }
 }

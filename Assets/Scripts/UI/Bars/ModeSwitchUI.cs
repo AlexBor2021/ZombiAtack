@@ -11,11 +11,13 @@ public class ModeSwitchUI : MonoBehaviour
     [SerializeField] private Button _shopButton;
     [SerializeField] private Button _nextWave;
     [SerializeField] private GameObject _shopManager;
+    [SerializeField] private UnlockTower _unlockTower;
 
     public event UnityAction StartedAttack;
 
     public void SetUIAttack()
     {
+        _unlockTower?.gameObject.SetActive(false);
         _barDie.gameObject.SetActive(true);
         _waveBar.gameObject.SetActive(true);
         _shopManager.gameObject.SetActive(false);
@@ -25,6 +27,7 @@ public class ModeSwitchUI : MonoBehaviour
     }
     public void SetUIShop()
     {
+        _unlockTower?.gameObject.SetActive(true);
         _barDie.gameObject.SetActive(false);
         _waveBar.gameObject.SetActive(false);
         _shopButton.gameObject.SetActive(true);

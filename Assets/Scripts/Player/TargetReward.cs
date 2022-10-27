@@ -17,7 +17,7 @@ public class TargetReward : MonoBehaviour
         }
         if (other.TryGetComponent<Almaz>(out Almaz almaz))
         {
-            _effectCoin.Play();
+            _player.TakeAlmaz(coin.TakeCoin());
             Instantiate(_effectAlmaz, transform);
         }
     }
