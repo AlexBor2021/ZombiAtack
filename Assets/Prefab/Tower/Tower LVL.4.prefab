@@ -18011,7 +18011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shell: {fileID: 6197942471715588039, guid: 29277f7a2cf31a949bd1f438823f8f81, type: 3}
-  _bullet: {fileID: 2740409403971857290, guid: 58e13c90f17af004ca51f31fbc23305e, type: 3}
+  _bullet: {fileID: 2740409403971857290, guid: af9a4a94c4e2b364983a7dd98ee9fb98, type: 3}
   _spawnBullet: {fileID: 1274118195897578567}
   _spawShell: {fileID: 7553052599766108695}
   _effectShoot: {fileID: 3423716237434514626}

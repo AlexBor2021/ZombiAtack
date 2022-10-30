@@ -7,16 +7,16 @@ public class ShootingPlayer : MonoBehaviour
 {
     [SerializeField] private Rifle _rifle;
     
-    public Enemy _enemyTarget;
+    public Enemy EnemyTarget;
 
     private void Update()
     {
-        if (_enemyTarget != null)
+        if (EnemyTarget?.Health > 0)
         {
-            if (Vector3.Distance(_enemyTarget.transform.position, transform.position) < _rifle.RangeBullet)
+            if (Vector3.Distance(EnemyTarget.transform.position, transform.position) < _rifle.RangeBullet)
             {
-                transform.LookAt(_enemyTarget.transform.position);
-                _rifle.ShootInEnemy(_enemyTarget);
+                transform.LookAt(EnemyTarget.transform.position);
+                _rifle.ShootInEnemy(EnemyTarget);
             }
             else
             {

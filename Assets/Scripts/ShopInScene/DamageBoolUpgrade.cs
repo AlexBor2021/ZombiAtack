@@ -7,14 +7,13 @@ using UnityEngine.UI;
 public class DamageBoolUpgrade : MonoBehaviour
 {
     [SerializeField] private Rifle _rifle;
-    [SerializeField] private List<Bullet> _bullets;
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private TextMeshProUGUI _numberLevel;
     [SerializeField] private Player _player;
     [SerializeField] private Button _buyButton;
 
+    private int _upDamageBullet = 2;
     private int _cost = 50;
-    private int _cuurentBullet = 0;
     private int _maxLevel = 5;
     private const string _max = "max";
     private int _levelNext = 2;
@@ -39,8 +38,7 @@ public class DamageBoolUpgrade : MonoBehaviour
             Currentlevel++;
             _costText.color = Color.white;
             _player.GiveCoin(_cost);
-            _rifle.UpgradeBullet(_bullets[_cuurentBullet]);
-            _cuurentBullet++;
+            _rifle.UpgradeBullet(_upDamageBullet);
             SetUI();
         }
     }
@@ -64,8 +62,7 @@ public class DamageBoolUpgrade : MonoBehaviour
         for (int i = 1; i < level; i++)
         {
             SetUI();
-            _cuurentBullet++;
-            _rifle.UpgradeBullet(_bullets[_cuurentBullet]);
+            _rifle.UpgradeBullet(_upDamageBullet);
         }
     }
 }

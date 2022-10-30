@@ -15,7 +15,7 @@ public class EnemyMove : MonoBehaviour
 
     private void Update()
     {
-        if (_target.GetComponent<Destructible>().Health <= 0)
+        if (_target.transform.GetComponent<Destructible>().Health <= 0)
         {
             Destroy(gameObject);
             return;

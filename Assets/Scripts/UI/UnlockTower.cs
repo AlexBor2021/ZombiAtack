@@ -24,7 +24,7 @@ public class UnlockTower : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (_player.Coin >= _costUnLock && _player != null)
+        if (_player?.Coin >= _costUnLock)
             _costText.color = Color.white;
         else
             _costText.color = Color.red;

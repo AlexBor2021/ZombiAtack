@@ -7,8 +7,13 @@ public class Coin : MonoBehaviour
     [SerializeField] private Revard _revard;
     [SerializeField] private Enemy _enemy;
 
-    public int TakeCoin()
+    private int _value;
+
+    public int Value => _value;
+
+    private void Awake()
     {
-        return _enemy.RevardCoin;
+        _value = _enemy.RevardCoin;
     }
+    
 }

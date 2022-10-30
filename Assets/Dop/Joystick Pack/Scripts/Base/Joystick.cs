@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class Joystick : InputUser, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-    public float Horizontal { get { return (snapX) ? SnapFloat(input.x, AxisOptions.Horizontal) : input.x; } }
-    public float Vertical { get { return (snapY) ? SnapFloat(input.y, AxisOptions.Vertical) : input.y; } }
+    protected override float Horizontal { get { return (snapX) ? SnapFloat(input.x, AxisOptions.Horizontal) : input.x; } }
+    protected override float Vertical { get { return (snapY) ? SnapFloat(input.y, AxisOptions.Vertical) : input.y; } }
     public Vector2 Direction { get { return new Vector2(Horizontal, Vertical); } }
 
     public float HandleRange
@@ -39,7 +39,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     private Camera cam;
 
     private Vector2 input = Vector2.zero;
-
+    
     protected virtual void Start()
     {
         HandleRange = handleRange;
@@ -75,7 +75,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         HandleInput(input.magnitude, input.normalized, radius, cam);
         handle.anchoredPosition = input * radius * handleRange;
     }
-
+    
+    protected override void GetInputVector(){}
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
     {
         if (magnitude > deadZone)

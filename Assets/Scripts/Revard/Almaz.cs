@@ -8,9 +8,13 @@ public class Almaz : MonoBehaviour
     [SerializeField] private Enemy _enemy;
 
     private float _numberProability = 3;
-    public int TakeAlmaz()
+    private int _value;
+
+    public int Value => _value;
+
+    private void Awake()
     {
-        return _enemy.RewardAlmaz;
+        _value = _enemy.RewardAlmaz;
     }
 
     public bool Probability()

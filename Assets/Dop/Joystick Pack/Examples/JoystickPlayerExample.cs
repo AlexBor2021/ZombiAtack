@@ -8,8 +8,8 @@ public class JoystickPlayerExample : MonoBehaviour
     public VariableJoystick variableJoystick;
     public Rigidbody rb;
 
-    public void FixedUpdate()
-    {
-        rb.velocity = new Vector3(variableJoystick.Horizontal * speed, rb.velocity.y, variableJoystick.Vertical * speed);
-    }
+    //public void FixedUpdate()
+    //{
+    //    rb.velocity = new Vector3(variableJoystick.Horizontal * speed, rb.velocity.y, variableJoystick.Vertical * speed);
+    //}
 }

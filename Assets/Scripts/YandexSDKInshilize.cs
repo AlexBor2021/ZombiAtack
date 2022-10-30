@@ -9,6 +9,9 @@ public class YandexSDKInshilize : MonoBehaviour
 {
     private BasaData _basaData;
     public BasaData BaseData => _basaData;
+    
+    public bool InputSystemKeyBoard;
+
 
     private IEnumerator  Start()
     {
@@ -35,5 +38,15 @@ public class YandexSDKInshilize : MonoBehaviour
         SceneManager.LoadScene(1);
 #endif
         yield return null;
+
+        InputSystemKeyBoard = SetInputGameKeyBoard();
     }
+    public bool SetInputGameKeyBoard()
+    {
+#if UNITY_WEBGL && YANDEX_GAMES && !UNITY_EDITOR
+        return Device.Type == Agava.YandexGames.DeviceType.Desktop;
+#endif
+        return SystemInfo.deviceType ==  UnityEngine.DeviceType.Desktop;
+    }
+
 }

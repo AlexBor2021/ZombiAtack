@@ -55,11 +55,11 @@ public class EnemySpawn : MonoBehaviour
     {
         int number = Random.Range(0, _currentWave.Transforms.Count);
         int spread = Random.Range(-10, 10);
-        var enemy = Instantiate(_currentWave.Enemy, (_currentWave.Transforms[number])).GetComponent<Enemy>();
+        var enemy = Instantiate(_currentWave.Enemy, (_currentWave.Transforms[number])).transform.GetComponent<Enemy>();
         enemy.transform.position += new Vector3(spread, 0, spread);
         _targetForPlayer.AddEnemy(enemy);
         enemy.DiedEnemy += _barDie.SetCountDie;
-        enemy.gameObject.transform.GetComponentInChildren<EnemyMove>().SetTarget(_targetsForEnemy.Target);
+        enemy.transform.GetComponent<EnemyMove>().SetTarget(_targetsForEnemy.Target);
     }
 
     [System.Serializable]

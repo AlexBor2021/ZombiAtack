@@ -6,6 +6,6 @@ public class EffectRevard : MonoBehaviour
 {
     private void OnEnable()
     {
-        Destroy(gameObject, 800f);
+        Destroy(gameObject, 2f);
     }
 }

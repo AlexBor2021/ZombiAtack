@@ -10,31 +10,28 @@ public class EnemyAtack : MonoBehaviour
     private Destructible _destructible;
     private int _damage = 5;
 
-    private void OnTriggerEnter(Collider other)
+    public void SetDestructible(Destructible destructible)
     {
-        if (other.TryGetComponent<Destructible>(out Destructible destructible))
+        if (_destructible == null && destructible?.Health > 0)
         {
-            _destructible = destructible;
-            if(_destructible.Health > 0)
-                Attack(true);
+            _destructible = destructible;   
+            Attack(true);
         }
     }
-    private void OnTriggerExit(Collider other)
+    public void ExitDestructible()
     {
-        if (other.TryGetComponent<Destructible>(out Destructible destructible))
-        {
-            _destructible = null;
-            Attack(false);
-        }
+        _destructible = null;
+        Attack(false);
     }
     private void GiveDamage()
     {
-        if (_destructible.Health > 0 && _destructible != null)
+        if (_destructible?.Health > 0)
         {
             _destructible.TakeDamage(_damage);
         }
         else
         {
+            _destructible = null;
             Attack(false);
         }
     }

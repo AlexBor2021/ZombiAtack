@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem _effect;
     [SerializeField] private int _damage;
 
-    private float _speed = 15;
+    private float _speed = 20;
+    private int _startDamage;
 
     private void OnEnable()
     {
-        transform.parent = null;
-        _effect.Play();
+        _startDamage = _damage;
     }
-
+    private void OnDisable()
+    {
+        _damage = _startDamage;
+    }
     private void Update()
     {
-        transform.Translate(1 * _speed * Time.deltaTime, 0, 0);
+        transform.Translate(0,0,-1 * _speed * Time.deltaTime);
         Destroy(gameObject, 1f);
     }
 
@@ -26,7 +28,12 @@ public class Bullet : MonoBehaviour
         if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
             enemy.TakeDamage(_damage);
-            Destroy(gameObject);    
+            Destroy(gameObject);
         }
+    }
+
+    public void Updamage(int updamage)
+    {
+        _damage += updamage;
     }
 }
