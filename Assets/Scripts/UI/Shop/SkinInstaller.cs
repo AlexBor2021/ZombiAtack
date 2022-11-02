@@ -9,11 +9,15 @@ public class SkinInstaller : MonoBehaviour
     [SerializeField] private Button _buttonSetSkin;
     [SerializeField] private Button _buttonBuy;
     [SerializeField] private Player _player;
-    [SerializeField] private SkinInstaller _skinInstaller;
+    [SerializeField] private Image _imageSkin;
     [SerializeField] private Material _skinMaterial;
+    [SerializeField] private TextMeshProUGUI _fixed;
+    [SerializeField] private TextMeshProUGUI _set;
 
-    private const string _fixed = "Fixed";
-    private const string _set = "Set";
+    private void Awake()
+    {
+        _imageSkin.color = _skinMaterial.color;
+    }
 
     public void ActiveButton()
     {
@@ -23,14 +27,15 @@ public class SkinInstaller : MonoBehaviour
 
     public void SetSkin()
     {
-        _player.SetSkinMaterial(_skinMaterial, _skinInstaller);
-        _buttonSetSkin.GetComponentInChildren<TextMeshProUGUI>().text = _fixed;
+        _player.SetSkinMaterial(_skinMaterial, this);
+        _set.gameObject.SetActive(false);
+        _fixed.gameObject.SetActive(true);
         _buttonSetSkin.interactable = false;
         _buttonSetSkin.colors.normalColor.CompareRGB(Color.gray);
     }
     public void SkinTakeOff()
     {
-        _buttonSetSkin.GetComponentInChildren<TextMeshProUGUI>().text = _set;
+        _set.gameObject.SetActive(true);
         _buttonSetSkin.interactable = true;
         _buttonSetSkin.colors.normalColor.CompareRGB(Color.white);
     }

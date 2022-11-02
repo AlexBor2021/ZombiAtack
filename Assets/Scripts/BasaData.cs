@@ -26,7 +26,7 @@ public class Shop
 [Serializable]
 public class UnitData
 {
-    public int Coin = 0;
+    public int Coin = 2000;
     public int Almaz = 0;
 }
 

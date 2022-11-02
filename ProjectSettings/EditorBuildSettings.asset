@@ -14,4 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 830225bb00bac154b8a7832f1f9c1b73
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 2fe97acd6a7f6a449b84f07fde0f0130, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 415de4a1f8c65d543ba44edd86c2294b, type: 2}

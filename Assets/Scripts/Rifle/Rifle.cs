@@ -6,7 +6,6 @@ public class Rifle : MonoBehaviour
 {
     [SerializeField] private Shell _shell;
     [SerializeField] private Bullet _bullet;
-    [SerializeField] private GameObject _bulletPat;
     [SerializeField] private Transform _spawnBullet;
     [SerializeField] private Transform _spawShell;
     [SerializeField] private ParticleSystem _effectShoot;
@@ -25,7 +24,7 @@ public class Rifle : MonoBehaviour
     {
         while (enemy != null)
         {
-            Instantiate(_shell, _spawShell);
+            Instantiate(_shell, _spawShell.transform);
             Instantiate(_bullet, _spawnBullet.position, _spawnBullet.rotation);
             _effectShoot.Play();
             yield return new WaitForSeconds(_dalayForShoting);

@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private BasaData _basaData;
 
     private SkinInstaller _skinInstaller;
-    private int _coin = 6000;
+    private int _coin = 0;
     private int _almaz = 0;
     public int Coin => _coin;
     public int Almaz => _almaz;

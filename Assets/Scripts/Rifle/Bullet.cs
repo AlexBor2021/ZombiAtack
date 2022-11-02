@@ -5,8 +5,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private int _damage;
+    [SerializeField] private ParticleSystem _hitBullet;
 
-    private float _speed = 20;
+    private float _speed = 25;
     private int _startDamage;
 
     private void OnEnable()
@@ -19,7 +20,7 @@ public class Bullet : MonoBehaviour
     }
     private void Update()
     {
-        transform.Translate(0,0,-1 * _speed * Time.deltaTime);
+        transform.Translate(0, 0, -1 * _speed * Time.deltaTime);
         Destroy(gameObject, 1f);
     }
 
@@ -28,6 +29,15 @@ public class Bullet : MonoBehaviour
         if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
             enemy.TakeDamage(_damage);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Wall" || collision.gameObject.name == "Table")
+        {
+            Instantiate(_hitBullet, gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

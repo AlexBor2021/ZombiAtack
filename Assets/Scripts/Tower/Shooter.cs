@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+    [SerializeField] private int _damage;
+    [SerializeField] private Rifle _rifle;
+
     private float _speedLook = 5;
+
+    private void Awake()
+    {
+        _rifle.UpgradeBullet(_damage);
+    }
 
     public void LookOnTraget(Enemy enemyTarget)
     {

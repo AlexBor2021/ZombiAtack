@@ -15,14 +15,12 @@ public class MoverPlayer : MonoBehaviour
 
     private void Awake()
     {
-#if !UNITY_EDITOR
         _setKeyboard = FindObjectOfType<YandexSDKInshilize>().InputSystemKeyBoard;
-#endif
     }
 
     private void OnEnable()
     {
-#if !UNITY_EDITOR
+        Debug.Log(_setKeyboard);
         if (_setKeyboard)
         {
             _keyBoordInput.Init(this);
@@ -32,8 +30,6 @@ public class MoverPlayer : MonoBehaviour
             _variableJoystick.gameObject.SetActive(true);
             _variableJoystick.Init(this);
         }
-#endif
-        _keyBoordInput.Init(this);
     }
 
     public void FixedUpdate()
