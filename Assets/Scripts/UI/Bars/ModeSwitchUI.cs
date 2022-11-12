@@ -6,32 +6,39 @@ using UnityEngine.UI;
 
 public class ModeSwitchUI : MonoBehaviour
 {
-    [SerializeField] private BarDie _barDie;
-    [SerializeField] private WaveBar _waveBar;
-    [SerializeField] private Button _shopButton;
-    [SerializeField] private Button _nextWave;
-    [SerializeField] private GameObject _shopManager;
-    [SerializeField] private UnlockTower _unlockTower;
+    [SerializeField] private List<GameObject> _uiAttack;
+    [SerializeField] private List<GameObject> _uiNotAttack;
+    
 
     public event UnityAction StartedAttack;
 
     public void SetUIAttack()
     {
-        _unlockTower?.gameObject.SetActive(false);
-        _barDie.gameObject.SetActive(true);
-        _waveBar.gameObject.SetActive(true);
-        _shopManager.gameObject.SetActive(false);
-        _shopButton.gameObject.SetActive(false);
-        _nextWave.gameObject.SetActive(false);
+        SwitchObject(_uiAttack, true);
+        SwitchObject(_uiNotAttack, false);
         StartedAttack?.Invoke();
     }
     public void SetUIShop()
     {
-        _unlockTower?.gameObject.SetActive(true);
-        _barDie.gameObject.SetActive(false);
-        _waveBar.gameObject.SetActive(false);
-        _shopButton.gameObject.SetActive(true);
-        _nextWave.gameObject.SetActive(true);
-        _shopManager.gameObject.SetActive(true);
+        SwitchObject(_uiAttack, false);
+        SwitchObject(_uiNotAttack, true);
+    }
+    private void SwitchObject(List<GameObject> list, bool enable)
+    {
+        foreach (var item in list)
+        {
+            item.SetActive(enable);
+        }
+    }
+    public void DeleteInList(GameObject gameObject)
+    {
+        foreach (var item in _uiNotAttack)
+        {
+            if (item == gameObject)
+            {
+                _uiNotAttack.Remove(item);
+                return;
+            }
+        }
     }
 }

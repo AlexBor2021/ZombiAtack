@@ -5,16 +5,29 @@ using UnityEngine;
 public class ShootingTower : MonoBehaviour
 {
     [SerializeField] private Rifle _rifle;
+    [SerializeField] private Transform _rifleNavigation;
     [SerializeField] private Shooter _shooter;
+    [SerializeField] private float _maxrange;
+    [SerializeField] private float _minrange;
 
     private Enemy _targetCurrent;
 
     private void Update()
     {
-        if (_targetCurrent != null)
+
+        if (_targetCurrent != null && _targetCurrent.Health > 0)
         {
-            _shooter.LookOnTraget(_targetCurrent);
-            _rifle.ShootInEnemy(_targetCurrent);
+            Debug.Log(Vector3.Distance(_targetCurrent.transform.position, _shooter.transform.position));
+            if (Vector3.Distance(_targetCurrent.transform.position, _shooter.transform.position) < _maxrange && Vector3.Distance(_targetCurrent.transform.position, _shooter.transform.position) > _minrange)
+            {
+                _rifle.ShootInEnemy(_targetCurrent);
+                _shooter.LookOnTraget(_targetCurrent);
+                _rifleNavigation.LookAt(_targetCurrent.transform, Vector3.up * 5f * Time.deltaTime);
+            }
+            else
+            {
+                _targetCurrent = null;
+            }
         }
         else
         {
@@ -26,8 +39,15 @@ public class ShootingTower : MonoBehaviour
     {
         if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            if (enemy.Health > 0)
-                SetTarget(enemy);
+            if (enemy.Health > 0 && _targetCurrent?.Health < 0 || _targetCurrent == null)
+            {
+                Debug.Log(Vector3.Distance(enemy.transform.position, transform.position));
+
+                if (Vector3.Distance(enemy.transform.position, _shooter.transform.position) < _maxrange && Vector3.Distance(enemy.transform.position, _shooter.transform.position) > _minrange)
+                {
+                    SetTarget(enemy);
+                }
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -39,11 +59,7 @@ public class ShootingTower : MonoBehaviour
     }
     private void SetTarget(Enemy enemy)
     {
-        if(_targetCurrent == null)
-        {
-            _targetCurrent = enemy;
-        }
-        else if (_targetCurrent.Health <= 0)
+        if(_targetCurrent == null || _targetCurrent.Health <= 0)
         {
             _targetCurrent = enemy;
         }

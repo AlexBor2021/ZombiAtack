@@ -7,6 +7,7 @@ public class BarDie : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textDie;
     [SerializeField] private FinishWave _finishWave;
+    [SerializeField] private EnemySpawn _enemySpawn;
 
     private int _countDie = 0;
 
@@ -23,10 +24,14 @@ public class BarDie : MonoBehaviour
         enemy.DiedEnemy -= SetCountDie;
         _countDie++;
         _textDie.text = _countDie.ToString();
-        _finishWave.FihishingWave(_countDie);
+        if (_enemySpawn.CountEnemyInWave == _countDie)
+        {
+            _finishWave.gameObject.SetActive(true);
+        }
     }
     public void Restart()
     {
         _countDie = 0;
+        _textDie.text = _countDie.ToString();
     }
 }

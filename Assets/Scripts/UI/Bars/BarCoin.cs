@@ -6,14 +6,12 @@ using TMPro;
 public class BarCoin : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _coinBar;
+    [SerializeField] private AudioSource _revardSound;
     [SerializeField] private Player _player;
 
-    private void Awake()
-    {
-        _coinBar.text = _player.Coin.ToString();
-    }
     private void OnEnable()
     {
+        _coinBar.text = _player.Coin.ToString();
         _player.ChangedCoin += RefreshBar;
     }
 
@@ -25,5 +23,6 @@ public class BarCoin : MonoBehaviour
     private void RefreshBar(int coinPlayer)
     {
         _coinBar.text = coinPlayer.ToString();
+        Instantiate(_revardSound);
     }
 }

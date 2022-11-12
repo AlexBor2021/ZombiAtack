@@ -10,6 +10,7 @@ public class Door : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private Button _fixButton;
     [SerializeField] private FinishWave _finishWave;
+    [SerializeField] private AudioSource _crashBoardSound;
     
     private int _cuurentBoard = 0;
     private float _healthForPersent;
@@ -32,6 +33,7 @@ public class Door : MonoBehaviour
         if (_destructible.Health <= SetPersent(_boards[_cuurentBoard].PersentForDestroy))
         {
             DestroyDoor(_cuurentBoard);
+            _crashBoardSound.Play();
         }
     }
     public void OnFixButton()

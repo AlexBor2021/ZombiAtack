@@ -11,6 +11,14 @@ public class TargetForPlayer : MonoBehaviour
 
     private Enemy _cuurentTarget;
 
+    private void OnEnable()
+    {
+        _player.DiedPlayer += ClearList;
+    }
+    private void OnDisable()
+    {
+        _player.DiedPlayer -= ClearList;
+    }
     private void Update()
     {
         if (_enemies.Count == 0)
@@ -46,5 +54,9 @@ public class TargetForPlayer : MonoBehaviour
     {
         enemy.DiedEnemy -= OnDieEnemy;
         _enemies.Remove(enemy);
+    }
+    private void ClearList()
+    {
+        _enemies.Clear();
     }
 }

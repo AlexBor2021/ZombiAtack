@@ -7,25 +7,29 @@ using UnityEngine.UI;
 public class CanvasTower : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _cost;
-    [SerializeField] private TextMeshProUGUI _level;
     [SerializeField] private Button _buttonUpgrade;
+    [SerializeField] private List<Image> _stars;
 
-    public void TakeInfo(int cost, int level)
+    public void TakeInfo(int cost, int level, int maxLevel, Player player = null)
     {
-        _cost.text = cost.ToString();
-        _level.text = level.ToString();
+        if (level <= maxLevel)
+        {
+            _cost.text = cost.ToString();
+            _stars[level].enabled = true;
+            SetColorCost(cost, player);
+            _buttonUpgrade.interactable = true;
+        }
     }
     public void SetMaxLevel()
     {
         _buttonUpgrade.interactable = false;
-        _level.text = "max";
         _cost.text = " ";
     }
-    public void SetColorCost(bool notCoin)
+    private void SetColorCost(int cost, Player player = null)
     {
-        if (notCoin)
+        if (player?.Coin < cost)
             _cost.color = Color.red;
-        else
+        else if(player?.Coin > cost)
             _cost.color = Color.white;
     }
 

@@ -6,6 +6,8 @@ public class Environment : MonoBehaviour
 {
     [SerializeField] private EnemyAtack _enemyAtack;
 
+    private Destructible _destructible;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Destructible>(out Destructible destructible))
@@ -17,7 +19,7 @@ public class Environment : MonoBehaviour
     {
         if (other.TryGetComponent<Destructible>(out Destructible destructible))
         {
-            _enemyAtack.ExitDestructible();
+            _enemyAtack.ExitDestructible(destructible);
         }
     }
 }

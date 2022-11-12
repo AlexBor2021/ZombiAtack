@@ -28,9 +28,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27731667443712
-    m_Localized: "Oyunda bir iyile\u015Ftirme sistemi var: \\n1. Mermi kalibresi
-      - at\u0131\u015F hasar\u0131 \\ n2. Ate\u015F oran\u0131 - merminin t\xFCfekten
-      ka\xE7ma zaman\u0131 \\ n3. Kap\u0131 mukavemeti - 100 hp"
+    m_Localized: 'The game has an iron upgrade system:  \n1. Health - increases the
+      number of lives of the player  \n2. Door health - strengthening the door by
+      100 hp'
     m_Metadata:
       m_Items:
       - rid: 8977577367821877259
@@ -75,7 +75,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19022400708608
-    m_Localized: "\xC7ap"
+    m_Localized: Health
     m_Metadata:
       m_Items: []
   - m_Id: 19469781950464
@@ -127,6 +127,38 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 170117402574848
     m_Localized: Dil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1156545277583360
+    m_Localized: UPGRADE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2167671327023104
+    m_Localized: Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2170391702265856
+    m_Localized: Skin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2170495452569600
+    m_Localized: Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3028467823788032
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3056487225737216
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3056569765445632
+    m_Localized: Effects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3388959218057216
+    m_Localized: Revard
     m_Metadata:
       m_Items: []
   references:

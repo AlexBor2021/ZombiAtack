@@ -18,10 +18,13 @@ public class EnemyAtack : MonoBehaviour
             Attack(true);
         }
     }
-    public void ExitDestructible()
+    public void ExitDestructible(Destructible destructible)
     {
-        _destructible = null;
-        Attack(false);
+        if (destructible == _destructible)
+        {
+            _destructible = null;
+            Attack(false);
+        }
     }
     private void GiveDamage()
     {

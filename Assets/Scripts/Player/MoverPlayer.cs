@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MoverPlayer : MonoBehaviour
 {
@@ -15,12 +13,10 @@ public class MoverPlayer : MonoBehaviour
 
     private void Awake()
     {
+#if UNITY_EDITOR
+        _keyBoordInput.Init(this);
+#else
         _setKeyboard = FindObjectOfType<YandexSDKInshilize>().InputSystemKeyBoard;
-    }
-
-    private void OnEnable()
-    {
-        Debug.Log(_setKeyboard);
         if (_setKeyboard)
         {
             _keyBoordInput.Init(this);
@@ -30,6 +26,7 @@ public class MoverPlayer : MonoBehaviour
             _variableJoystick.gameObject.SetActive(true);
             _variableJoystick.Init(this);
         }
+#endif
     }
 
     public void FixedUpdate()
@@ -38,7 +35,7 @@ public class MoverPlayer : MonoBehaviour
 
         if (_directionMove != Vector3.zero)
         {
-            var vector  = Vector3.RotateTowards(transform.forward, _rigiBody.velocity, 6f * Time.deltaTime, 0.0f);
+            var vector = Vector3.RotateTowards(transform.forward, _rigiBody.velocity, 6f * Time.deltaTime, 0.0f);
             transform.rotation = Quaternion.LookRotation(vector);
             _animation.SetMove(true);
         }

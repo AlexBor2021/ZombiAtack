@@ -8,13 +8,13 @@ public class DoorHealthUpgrade : MonoBehaviour
 {
     [SerializeField] private List<Destructible> _destructibleDoors;
     [SerializeField] private TextMeshProUGUI _costText;
-    [SerializeField] private TextMeshProUGUI _numberLevel;
+    [SerializeField] private List<Image> _stars;
     [SerializeField] private Player _player;
     [SerializeField] private Button _buyButton;
 
-    private int _cost = 50;
-    private int _health = 100;
-    private int _levelNext = 2;
+    private int _cost = 5;
+    private int _health = 50;
+    private int _levelNext = 0;
     private int _maxLevell = 5;
     private const string _max = "max";
 
@@ -23,7 +23,7 @@ public class DoorHealthUpgrade : MonoBehaviour
     private void Awake()
     {
         _costText.text = _cost.ToString();
-        _numberLevel.text = _levelNext.ToString();
+        _stars[_levelNext].enabled = true;
     }
     private void Update()
     {
@@ -53,11 +53,11 @@ public class DoorHealthUpgrade : MonoBehaviour
     private void SetUI()
     {
         _levelNext++;
-        if (_levelNext <= _maxLevell)
+        if (_levelNext < _maxLevell)
         {
             _cost *= 2;
             _costText.text = _cost.ToString();
-            _numberLevel.text = _levelNext.ToString();
+            _stars[_levelNext].enabled = true;
         }
         else
         {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,23 +6,18 @@ public class Player : MonoBehaviour
     [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer;
     [SerializeField] private Destructible _destructible;
     [SerializeField] private GameObject _panelDie;
-    [SerializeField] private ModeSwitchUI _barForAttacks;
-    [SerializeField] private SkinInstaller _skinInstallerDefoult;
+    [SerializeField] private SkinInstaller _skinInstaller;
+    [SerializeField] private YandexGamesSDK _yandexGamesSDK;
 
-    private BasaData _basaData;
-
-    private SkinInstaller _skinInstaller;
-    private int _coin = 0;
+    private int _coin = 1000;
     private int _almaz = 0;
     public int Coin => _coin;
     public int Almaz => _almaz;
+    public event UnityAction DiedPlayer;
     public event UnityAction<int> ChangedCoin;
     public event UnityAction<int> ChangedAlmaz;
 
-    private void OnEnable()
-    {
-        _skinInstaller = _skinInstallerDefoult;
-    }
+    
     private void Update()
     {
         if (_destructible.Health <= 0)
@@ -66,11 +59,11 @@ public class Player : MonoBehaviour
     {
         _coin = coin;
         _almaz = almaz;
-        ChangedCoin?.Invoke(_coin);
-        ChangedAlmaz?.Invoke(_almaz);
     }
     private void Die()
     {
+        DiedPlayer?.Invoke();
+        _yandexGamesSDK.OnShowInterstitialButtonClick();
         Time.timeScale = 0;
         _panelDie.SetActive(true);
     }

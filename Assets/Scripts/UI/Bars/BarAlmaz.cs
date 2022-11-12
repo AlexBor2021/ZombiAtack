@@ -7,13 +7,11 @@ public class BarAlmaz : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _almazBar;
     [SerializeField] private Player _player;
+    [SerializeField] private AudioSource _revardSound;
 
-    private void Awake()
-    {
-        _almazBar.text = _player.Almaz.ToString();
-    }
     private void OnEnable()
     {
+        _almazBar.text = _player.Almaz.ToString();
         _player.ChangedAlmaz += RefreshBar;
     }
 
@@ -25,5 +23,6 @@ public class BarAlmaz : MonoBehaviour
     private void RefreshBar(int almazPlayer)
     {
         _almazBar.text = almazPlayer.ToString();
+        Instantiate(_revardSound);
     }
 }

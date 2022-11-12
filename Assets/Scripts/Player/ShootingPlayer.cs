@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ShootingPlayer : MonoBehaviour
 {
-    [SerializeField] private Rifle _rifle;
+    [SerializeField] private Weapon _weapon;
     
     public Enemy EnemyTarget;
 
@@ -13,19 +13,24 @@ public class ShootingPlayer : MonoBehaviour
     {
         if (EnemyTarget?.Health > 0)
         {
-            if (Vector3.Distance(EnemyTarget.transform.position, transform.position) < _rifle.RangeBullet)
+            if (Vector3.Distance(EnemyTarget.transform.position, transform.position) < _weapon.RangeBullet)
             {
                 transform.LookAt(EnemyTarget.transform.position);
-                _rifle.ShootInEnemy(EnemyTarget);
+                _weapon.ShootInEnemy(EnemyTarget);
             }
             else
             {
-                _rifle.StopShoot();
+                _weapon.StopShoot();
             }
         }
         else
         {
-            _rifle.StopShoot();
+            _weapon.StopShoot();
         }
+    }
+
+    public void SetWeapon(Weapon weapon)
+    {
+        _weapon = weapon;
     }
 }

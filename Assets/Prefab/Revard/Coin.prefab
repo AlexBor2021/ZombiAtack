@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 2175485366682107930}
   m_Layer: 0
   m_Name: Coin
-  m_TagString: Untagged
+  m_TagString: Revard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 20, y: 4, z: 2}
-  m_Center: {x: 0.7632885, y: 2, z: 0.10051656}
+  m_Size: {x: 30, y: 8, z: 30}
+  m_Center: {x: 0.7632885, y: 1, z: 0.10051656}
 --- !u!54 &8134906542396494337
 Rigidbody:
   m_ObjectHideFlags: 0

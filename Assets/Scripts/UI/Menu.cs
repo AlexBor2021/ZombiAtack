@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Menu : MonoBehaviour
@@ -28,10 +26,10 @@ public class Menu : MonoBehaviour
         _allDoorRestart.RestartDoor();
         _player.Restart();
         _barDie.Restart();
-        var enemeis = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (var enemy in enemeis)
+        var revards = GameObject.FindGameObjectsWithTag("Revard");
+        foreach (var revard in revards)
         {
-            Destroy(enemy);
+            Destroy(revard);
         }
         _enemySpawn.Restart();
         gameObject.SetActive(false);

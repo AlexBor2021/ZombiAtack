@@ -1,39 +1,41 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.Events;
 
 public class FinishWave : MonoBehaviour
 {
-    [SerializeField] private EnemySpawn _enemySpawn;
-    [SerializeField] private TextMeshProUGUI _text;
-    [SerializeField] private ModeSwitchUI _barForAttacks;
+    [SerializeField] private ModeSwitchUI _modeSwitchUI;
     [SerializeField] private List<ParticleSystem> _effects;
+    [SerializeField] private AudioSource _batleSound;
+    [SerializeField] private AudioSource _notBatleSound;
+    [SerializeField] private AudioSource _win;
 
     public event UnityAction FinishedWave;
-
-    public void FihishingWave(int diedEnemies)
+    private void OnEnable()
     {
-        if (_enemySpawn.CountEnemyInWave == diedEnemies)
-        {
-            FinishedWave?.Invoke();
-            _text.gameObject.SetActive(true);
-            _barForAttacks.SetUIShop();
-            Invoke("OffText", 2);
-            foreach (var effect in _effects)
-            {
-                effect.gameObject.SetActive(true);
-            }
-        }
+        FinishingWave();
     }
-    public void OffText()
+    private void FinishingWave()
+    {
+        _win.Play();
+        _batleSound.Stop();
+        FinishedWave?.Invoke();
+        Invoke("OffText", 6);
+        SwitchEffect(true);
+        _modeSwitchUI.SetUIShop();
+    }
+    private void OffText()
+    {
+        SwitchEffect(false);
+        _notBatleSound.Play();
+        gameObject.SetActive(false);
+    }
+    private void SwitchEffect(bool enable)
     {
         foreach (var effect in _effects)
         {
-            effect.gameObject.SetActive(false);
+            effect.gameObject.SetActive(enable);
         }
-        _text.gameObject.SetActive(false);
     }
 }
 
