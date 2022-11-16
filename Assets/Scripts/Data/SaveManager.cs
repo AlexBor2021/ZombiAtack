@@ -14,11 +14,13 @@ public class SaveManager : MonoBehaviour
     private BasaData _basaData;
 
     public BasaData Data => _basaData;
+    public const string LeaderBoardName = "WaveCount";
 
     private void Awake()
     {
         _basaData = FindObjectOfType<YandexSDKInshilize>().BaseData;
         Initialise();
+        Leaderboard.SetScore(LeaderBoardName, _enemySpawn.CurrentWaveNumber);
     }
     private void OnEnable()
     {
@@ -49,6 +51,7 @@ public class SaveManager : MonoBehaviour
     }
     public void Save()
     {
+        Leaderboard.SetScore(LeaderBoardName, _enemySpawn.CurrentWaveNumber);
         CollectInfo();
         string BasaData = JsonUtility.ToJson(_basaData);
 #if UNITY_WEBGL && !UNITY_EDITOR 

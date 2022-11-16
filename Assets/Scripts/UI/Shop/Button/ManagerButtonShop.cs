@@ -17,7 +17,10 @@ public class ManagerButtonShop : MonoBehaviour
 
     public void SetCurrentButtonShop(ButtonShop buttonShop)
     {
-        _currentButtonShop.OffClick();
-        _currentButtonShop = buttonShop;
+        if (_currentButtonShop != buttonShop)
+        {
+            _currentButtonShop.OffClick();
+            _currentButtonShop = buttonShop;
+        }
     }
 }

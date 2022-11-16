@@ -7,7 +7,7 @@ public abstract class  Bullet : MonoBehaviour
     [SerializeField] protected ParticleSystem _hitBulletWall;
     [SerializeField] protected int _damage = 1;
     
-    protected float _speed = 20;
+    protected float _speed = 15;
     
     private void Update()
     {

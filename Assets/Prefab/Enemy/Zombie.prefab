@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: 905407892345070205}
   - component: {fileID: -3758679424369601592}
   - component: {fileID: 6529281954412291798}
-  - component: {fileID: 8714471964593139666}
+  - component: {fileID: 3527031381840183653}
   m_Layer: 8
   m_Name: Zombie
   m_TagString: Untagged
@@ -922,7 +922,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8714471964593139666
+--- !u!114 &3527031381840183653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -931,12 +931,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3414634358308665482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30e42d493e04ea841903b5ac27f7fd7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d24ed6ddedef274eb647d07642ba99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackSound: {fileID: 5841488059787151981}
-  _dieSound: {fileID: 7173761802853044913}
-  _punchSound: {fileID: 9016932526451202891}
+  _voiceAttack: {fileID: 5841488059787151981}
+  _punch: {fileID: 9016932526451202891}
+  _voiceDie: {fileID: 7173761802853044913}
 --- !u!1 &4116275095778900931
 GameObject:
   m_ObjectHideFlags: 0
