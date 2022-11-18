@@ -9,6 +9,7 @@ public class UnlockTower : MonoBehaviour
     [SerializeField] private UpgradeTower _upgradeTower;
     [SerializeField] private TextMeshProUGUI _costText; 
     [SerializeField] private ModeSwitchUI _modeSwitchUI;
+    [SerializeField] private TowerPlaceData _towerPlaceData;
 
     private int _costUnLock = 5;
     private Player _player;
@@ -40,11 +41,19 @@ public class UnlockTower : MonoBehaviour
     {
         if (_player?.Coin >= _costUnLock)
         {
+            _towerPlaceData.AskIsUnlockTowerTower(true);
             _player.GiveCoin(_costUnLock);
             _unlockCanvas.gameObject.SetActive(false);
             _upgradeTower.gameObject.SetActive(true);
             gameObject.SetActive(false);
             _modeSwitchUI.DeleteInList(gameObject);
         }
+    }
+    public void UnlockData()
+    {
+        _unlockCanvas.gameObject.SetActive(false);
+        _upgradeTower.gameObject.SetActive(true);
+        gameObject.SetActive(false);
+        _modeSwitchUI.DeleteInList(gameObject);
     }
 }

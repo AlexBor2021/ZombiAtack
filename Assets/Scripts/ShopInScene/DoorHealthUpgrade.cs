@@ -11,6 +11,7 @@ public class DoorHealthUpgrade : MonoBehaviour
     [SerializeField] private List<Image> _stars;
     [SerializeField] private Player _player;
     [SerializeField] private Button _buyButton;
+    [SerializeField] private DataShopInScene _dataShopInScene;
 
     private int _cost = 5;
     private int _health = 50;
@@ -36,6 +37,7 @@ public class DoorHealthUpgrade : MonoBehaviour
     {
         if (_player.Coin >= _cost)
         {
+            _dataShopInScene.AskLevelDoor(Currentlevel);
             _costText.color = Color.white;
             _player.GiveCoin(_cost);
             foreach (var door in _destructibleDoors)
@@ -48,6 +50,19 @@ public class DoorHealthUpgrade : MonoBehaviour
         else
         {
             _costText.color = Color.red;
+        }
+    }
+    public void UpgradeDoorData(int level)
+    {
+        _stars[_levelNext].enabled = true;
+        for (int i = 0; i < level; i++)
+        {
+            foreach (var door in _destructibleDoors)
+            {
+                door.UpgradeHealth(_health);
+            }
+            SetUI();
+            Currentlevel++;
         }
     }
     private void SetUI()

@@ -1,31 +1,58 @@
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class BasaData
 {
     public UnitData PlayerData;
-    public Shop DataShop;
-    public int NumberLevelTower = 0;
+    public ShopOnScene DataShopOnScene;
+    public ShopUI ShopUI;
+    public TowerPlace FirstTowerPlace;
+    public TowerPlace SecondTowerPlace;
+    public TowerPlace ThirdTowerPlace;
+    
     public int CurrentWave = 0;
 
     public BasaData()
     {
         PlayerData = new UnitData();
-        DataShop = new Shop();
+        DataShopOnScene = new ShopOnScene();
+        FirstTowerPlace = new TowerPlace();
+        SecondTowerPlace = new TowerPlace();
+        ThirdTowerPlace = new TowerPlace();
+        ShopUI = new ShopUI();
     }
 }
 
 [Serializable]
-public class Shop
+public class ShopOnScene
 {
-    public int LevelDoor = 1;
+    public int LevelDoor = 0;
+    public int LevelHealthPlayer = 0;
+}
+
+[Serializable]
+public class ShopUI
+{
+    public List<bool> SkinBuys = new List<bool>();
+    public List<bool> WeaponBuys = new List<bool>();
 }
 
 [Serializable]
 public class UnitData
 {
-    public int Coin = 0;
-    public int Almaz = 0;
+    public int Coin = 1000;
+    public int Almaz = 1000;
 }
+
+
+[Serializable]
+public class TowerPlace
+{
+    public bool UnloockTower = false;
+    public int LevelTower = 0;
+}
+
+
 
 

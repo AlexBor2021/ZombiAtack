@@ -10,8 +10,7 @@ public class ManagerLeaderBoard : MonoBehaviour
     [SerializeField] private GameObject _scrollView;
     [SerializeField] private GameObject _loading;
     [SerializeField] private LeaderBoardPrefab _veiw;
-    
-    private List<LeaderBoardPrefab> _veiws = new();
+    private List<LeaderBoardPrefab> _veiws = new List<LeaderBoardPrefab>();
 
 
     private void OnEnable()

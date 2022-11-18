@@ -11,6 +11,7 @@ public class UpgradeHealrh : MonoBehaviour
     [SerializeField] private List<Image> _stars;
     [SerializeField] private Player _player;
     [SerializeField] private Button _buyButton;
+    [SerializeField] private DataShopInScene _dataShopInScene;
 
     private int _cost = 5;
     private int _health = 10;
@@ -36,6 +37,7 @@ public class UpgradeHealrh : MonoBehaviour
     {
         if (_player.Coin >= _cost)
         {
+            _dataShopInScene.AskLevelHealth(Currentlevel);
             _costText.color = Color.white;
             _player.GiveCoin(_cost);
             _playerDestractible.UpgradeHealth(_health);
@@ -45,6 +47,16 @@ public class UpgradeHealrh : MonoBehaviour
         else
         {
             _costText.color = Color.red;
+        }
+    }
+    public void UpgradeHealthData(int level)
+    {
+        _stars[_levelNext].enabled = true;
+        for (int i = 0; i < level; i++)
+        {
+            _playerDestractible.UpgradeHealth(_health);
+            SetUI();
+            Currentlevel++;
         }
     }
     private void SetUI()

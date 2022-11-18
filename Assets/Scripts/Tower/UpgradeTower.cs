@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class UpgradeTower : MonoBehaviour
 {
     [SerializeField] private List<Tower> _towers;
-    [SerializeField] private TowerSave _towerSave;
+    [SerializeField] private TowerPlaceData _towerSave;
     [SerializeField] private GameObject _imageSoldje;
     [SerializeField] private CanvasTower _canvasTower;
     [SerializeField] private IconTower _iconTower;
@@ -57,7 +57,7 @@ public class UpgradeTower : MonoBehaviour
     {
         if (_player?.Coin >= _towers[_numberTower].Cost && _numberTower < MaxLevelTower)
         {
-            _towerSave.TakeLevelTower(_towers[_numberTower].Level);
+            _towerSave.AskLevelTower(_towers[_numberTower].Level);
             _player.GiveCoin(_towers[_numberTower].Cost);
             var tower = Instantiate(_towers[_numberTower], transform.position, transform.rotation);
             SetCuurentTower(tower);
@@ -68,11 +68,16 @@ public class UpgradeTower : MonoBehaviour
     }
     public void SetDataTower(int level)
     {
-        level--;
-        var tower = Instantiate(_towers[level], transform.position, Quaternion.identity);
-        SetCuurentTower(tower);
-        level++;
-         _canvasTower.TakeInfo(_towers[level].Cost, _numberTower, MaxLevelTower);
-        _iconTower.SetIconTower(level, MaxLevelTower);
+        for (int i = 0; i < level; i++)
+        {
+            _numberTower = i;
+            _canvasTower.TakeInfo(_towers[_numberTower].Cost, _numberTower, MaxLevelTower, _player);
+            _towerSave.AskLevelTower(_towers[_numberTower].Level);
+            var tower = Instantiate(_towers[_numberTower], transform.position, transform.rotation);
+            SetCuurentTower(tower);
+            _numberTower++;
+            _iconTower.SetIconTower(_numberTower, MaxLevelTower);
+            _imageSoldje.SetActive(false);
+        }
     }
 }

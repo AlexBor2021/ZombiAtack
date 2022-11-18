@@ -385,8 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761e3337a5ecafd49aab20d3d098a0f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _upgradeTower: {fileID: 13283688885576057}
   _unlockTower: {fileID: 13283689163720302}
+  _upgradeTower: {fileID: 13283688885576057}
 --- !u!1 &13283687945272039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,6 +1482,7 @@ MonoBehaviour:
   _upgradeTower: {fileID: 13283688885576057}
   _costText: {fileID: 0}
   _modeSwitchUI: {fileID: 0}
+  _towerPlaceData: {fileID: 13283687681177234}
 --- !u!1 &13283689335246688
 GameObject:
   m_ObjectHideFlags: 0

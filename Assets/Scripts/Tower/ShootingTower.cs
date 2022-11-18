@@ -17,7 +17,6 @@ public class ShootingTower : MonoBehaviour
 
         if (_targetCurrent != null && _targetCurrent.Health > 0)
         {
-            Debug.Log(Vector3.Distance(_targetCurrent.transform.position, _shooter.transform.position));
             if (Vector3.Distance(_targetCurrent.transform.position, _shooter.transform.position) < _maxrange && Vector3.Distance(_targetCurrent.transform.position, _shooter.transform.position) > _minrange)
             {
                 _rifle.ShootInEnemy(_targetCurrent);
@@ -41,8 +40,6 @@ public class ShootingTower : MonoBehaviour
         {
             if (enemy.Health > 0 && _targetCurrent?.Health < 0 || _targetCurrent == null)
             {
-                Debug.Log(Vector3.Distance(enemy.transform.position, transform.position));
-
                 if (Vector3.Distance(enemy.transform.position, _shooter.transform.position) < _maxrange && Vector3.Distance(enemy.transform.position, _shooter.transform.position) > _minrange)
                 {
                     SetTarget(enemy);
