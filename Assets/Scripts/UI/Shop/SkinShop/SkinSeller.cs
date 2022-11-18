@@ -9,6 +9,10 @@ public class SkinSeller : MonoBehaviour
     [SerializeField] private int _cost;
     [SerializeField] private TextMeshProUGUI _textCost;
     [SerializeField] private SkinInstaller _skinInstaller;
+    
+    private bool _isBuy = false;
+
+    public bool IsBuy => _isBuy;
 
     private void Awake()
     {
@@ -29,7 +33,16 @@ public class SkinSeller : MonoBehaviour
     {
         if (_player.Almaz >= _cost)
         {
+            _isBuy = true;
             _player.GiveAlmaz(_cost);
+            _skinInstaller.ActiveButton();
+        }
+    }
+    public void DataSkinSeller(bool isBuy)
+    {
+        if (isBuy)
+        {
+            _isBuy = true;
             _skinInstaller.ActiveButton();
         }
     }

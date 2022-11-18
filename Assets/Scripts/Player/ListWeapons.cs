@@ -22,6 +22,5 @@ public class ListWeapons : MonoBehaviour
         _shootingPlayer.SetWeapon(_weapons[number]);
         _currentWeapon = _weapons[number];
         _currentWeapon.gameObject.SetActive(true);
-
     }
 }

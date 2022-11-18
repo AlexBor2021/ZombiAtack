@@ -16,15 +16,15 @@ public class YandexSDKInshilize : MonoBehaviour
     private IEnumerator  Start()
     {
          DontDestroyOnLoad(this.gameObject);
+
 #if UNITY_WEBGL && !UNITY_EDITOR
 
         yield return YandexGamesSdk.Initialize();
         PlayerAccount.GetPlayerData(OnInitialized, OnError);
         void OnInitialized(string data)
         {
-            //Debug.Log("Initialized");
-            //_basaData = JsonUtility.FromJson<BasaData>(data);
-            _basaData = new BasaData();
+            Debug.Log("Initialized");
+            _basaData = JsonUtility.FromJson<BasaData>(data);
             SceneManager.LoadScene(1);
         }
 

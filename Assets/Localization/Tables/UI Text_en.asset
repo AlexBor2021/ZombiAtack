@@ -164,6 +164,10 @@ MonoBehaviour:
     m_Localized: Leader Board
     m_Metadata:
       m_Items: []
+  - m_Id: 5614962896125952
+    m_Localized: Start Again
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
