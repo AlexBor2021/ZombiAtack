@@ -1,0 +1,178 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI Text_tr
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: tr
+  m_SharedData: {fileID: 11400000, guid: e85591c43723e024c84c552fdc53e81e, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 8977577367821877259
+  m_TableData:
+  - m_Id: 524503597056
+    m_Localized: Oynamak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11670519799808
+    m_Localized: " \xC7\u0131k\u0131\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27731667443712
+    m_Localized: 'The game has an iron upgrade system:  \n1. Health - increases the
+      number of lives of the player  \n2. Door health - strengthening the door by
+      100 hp'
+    m_Metadata:
+      m_Items:
+      - rid: 8977577367821877259
+  - m_Id: 28467977510912
+    m_Localized: "T\xFCm bu geli\u015Fmeleri sat\u0131c\u0131dan sat\u0131n al\u0131n.
+      Zombi tehdidi olmad\u0131\u011F\u0131nda ortaya \xE7\u0131kar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29142320930816
+    m_Localized: "1. Zombi sald\u0131r\u0131s\u0131na ba\u015Flamak i\xE7in start\\n2
+      tu\u015Flar\u0131na bas\u0131n. Derileri sat\u0131n almak i\xE7in ma\u011Fazaya
+      t\u0131klay\u0131n"
+    m_Metadata:
+      m_Items:
+      - rid: 8977577367821877259
+  - m_Id: 13320085037056
+    m_Localized: Dalga
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14479847841792
+    m_Localized: "Oru\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14822585393152
+    m_Localized: "Kilidini a\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16519114252288
+    m_Localized: "G\xFC\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16831241773056
+    m_Localized: "D\xFCzey"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17387268071424
+    m_Localized: SEN KAZANDIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18444874407936
+    m_Localized: "Ate\u015F oran\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19022400708608
+    m_Localized: Health
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19469781950464
+    m_Localized: "Kap\u0131 g\xFCc\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21685020385280
+    m_Localized: Devam et
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25260261892096
+    m_Localized: "Ma\u011Faza"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25792586178560
+    m_Localized: Belirli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27152618610688
+    m_Localized: "E\u011E\u0130T\u0130M"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29076461969408
+    m_Localized: "\xDCss\xFCn savunmas\u0131n\u0131 g\xFC\xE7lendirmek i\xE7in bir
+      kule de sat\u0131n alabilirsiniz. Ama \xF6nce kilidini a\xE7man\u0131z gerekecek."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29125942173696
+    m_Localized: "Kap\u0131 bozulursa, \xE7eki\xE7le itilebilir ve kendili\u011Finden
+      iyile\u015Fir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63206128730112
+    m_Localized: "Ayr\u0131ca taban\u0131n d\u0131\u015F\u0131nda da tehlikelidir
+      - toprak zehirlidir. Uzun s\xFCreli maruz kalma sizi \xF6ld\xFCrebilir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65935836299264
+    m_Localized: "Yeniden ba\u015Flatma"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74608860053504
+    m_Localized: "Y\xFCklemek"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74709154250752
+    m_Localized: Belirli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170117402574848
+    m_Localized: Dil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1156545277583360
+    m_Localized: UPGRADE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2167671327023104
+    m_Localized: Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2170391702265856
+    m_Localized: Skin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2170495452569600
+    m_Localized: Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3028467823788032
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3056487225737216
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3056569765445632
+    m_Localized: Effects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3388959218057216
+    m_Localized: Revard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4096981242331136
+    m_Localized: Leader Board
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5614962896125952
+    m_Localized: Start Again
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8977577367821877259
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00e02fc83819000000e0af39811a0000
